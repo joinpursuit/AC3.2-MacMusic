@@ -68,7 +68,7 @@
 			children = (
 				2D01AC861DC6569B00BD087F /* SliderTableViewCell.swift */,
 				2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */,
-				2DDD5D861DD243EE002F77FB /* TrackViewController.swift */,
+				2D6660831DC3AB1D0006ECB6 /* AlbumTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -138,9 +138,9 @@
 		2D6660821DC3AAE70006ECB6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */,
 				2D6660801DC3AADA0006ECB6 /* AlbumsTableViewController.swift */,
-				2D6660831DC3AB1D0006ECB6 /* AlbumTableViewCell.swift */,
+				2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */,
+				2DDD5D861DD243EE002F77FB /* TrackViewController.swift */,
 				2D01AC841DC6516200BD087F /* SettingsTableViewController.swift */,
 			);
 			name = "View Controllers";
