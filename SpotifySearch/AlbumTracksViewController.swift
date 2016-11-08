@@ -54,11 +54,21 @@ class AlbumTracksViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCellID", for: indexPath)
         let track = tracks[indexPath.row]
-        cell.textLabel?.text = track.name
+        cell.textLabel?.text = "\(String(track.trackNumber)). \(track.trackName)"
         
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueToTrack" {
+            if let dest = segue.destination as? TrackViewController,
+                let indexPath = trackTableView.indexPathForSelectedRow {
+                dest.trackSelected = tracks[indexPath.row]
+                dest.albumImg = albumSelected.largeImageURL
+
+            }
+        }
+    }
     
     
     

@@ -89,7 +89,7 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCellID", for: indexPath) as! AlbumTableViewCell
         
         let album = self.album[indexPath.row]
-        cell.albumNameLabel.text = "\(indexPath.row + 1) : \(album.name)"
+        cell.albumNameLabel.text = album.name
         cell.albumImageView.downloadImage(urlString: album.smallImageURL!)
         
         return cell
