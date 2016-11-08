@@ -49,14 +49,21 @@ class TrackViewController: UIViewController {
         self.view.layer.addSublayer(playerLayer)
     }
     
+    @IBOutlet weak var playPauseButtonOutlet: UIButton!
+    
     @IBAction func playButtonTapped(_ sender: UIButton) {
+        
         if player?.rate == 0
         {
             player!.play()
+            playPauseButtonOutlet.setBackgroundImage(UIImage(named: "play_button"), for: UIControlState.normal)
+            playPauseButtonOutlet.alpha = 0.50
             
         } else {
             player!.pause()
-            
+            playPauseButtonOutlet.setBackgroundImage(UIImage(named: "pause_button"), for: UIControlState.normal)
+            playPauseButtonOutlet.alpha = 0.50
+
         }
     }
     
