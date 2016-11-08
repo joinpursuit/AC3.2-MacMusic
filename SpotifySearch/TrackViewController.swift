@@ -23,6 +23,16 @@ class TrackViewController: UIViewController {
     var playerItem:AVPlayerItem?
     var player:AVPlayer?
     
+    var trackArray: [Track] = []
+    var trackID = Int()
+    
+    
+    var trackBaseURL = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65"
+    var trackURL = ""
+    
+    var lyricURL = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=84534570&apikey=c4c49544dec7305a9c6a01af96bfdcb3"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         trackImageView.downloadImage(urlString: albumImg)
@@ -32,6 +42,7 @@ class TrackViewController: UIViewController {
         
         playAudio()
         
+        loadTrackId()
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,6 +68,27 @@ class TrackViewController: UIViewController {
         } else {
             player!.pause()
             
+        }
+    }
+    
+    func loadTrackId(){
+        guard let searchTrackName: String = trackSelected.trackName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+        guard let searchTrackSinger: String = trackSelected.singerName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+        trackURL = trackBaseURL + "&q_track=" + searchTrackName + "&q_artist=" + searchTrackSinger + "&page_size=10"
+        print(trackURL)
+
+        APIRequestManager.manager.getData(endPoint: trackURL) { (data: Data?) in
+            if let validData = data {
+                guard let validTrack = Track.getTrack(from: validData) else {return}
+                self.trackArray = validTrack
+                dump(self.trackArray)
+                //dump(validTrack)
+                DispatchQueue.main.async {
+                    guard self.trackArray.count > 0 else {return}
+                    self.trackID = self.trackArray[0].track_id
+                    self.lyricsTextView.text = String(self.trackID)
+                }
+            }
         }
     }
     

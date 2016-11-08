@@ -37,14 +37,14 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         
-        APIRequestManager.manager.getData(endPoint: track) { (data: Data?) in
-            if let validData = data {
-                guard let validTrack = Track.getTrack(from: validData) else {return}
-                self.trackArray = validTrack
-                dump(self.trackArray)
-                //dump(validTrack)
-            }
-        }
+//        APIRequestManager.manager.getData(endPoint: track) { (data: Data?) in
+//            if let validData = data {
+//                guard let validTrack = Track.getTrack(from: validData) else {return}
+//                self.trackArray = validTrack
+//                dump(self.trackArray)
+//                dump(validTrack)
+//            }
+//        }
         
     }
     
