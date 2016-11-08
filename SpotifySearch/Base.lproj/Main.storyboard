@@ -111,11 +111,11 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wmI-KM-ExK" id="9tH-9m-YCI">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="mTW-aC-Qy2" kind="show" id="Tu8-XS-3ky"/>
+                                            <segue destination="mTW-aC-Qy2" kind="show" identifier="SegueToTrack" id="Tu8-XS-3ky"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -271,10 +271,10 @@
             </objects>
             <point key="canvasLocation" x="3117.5999999999999" y="-953.07346326836591"/>
         </scene>
-        <!--Album View Controller-->
+        <!--Track View Controller-->
         <scene sceneID="2TT-6D-VkS">
             <objects>
-                <viewController id="mTW-aC-Qy2" customClass="AlbumViewController" customModule="SpotifySearch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mTW-aC-Qy2" customClass="TrackViewController" customModule="SpotifySearch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="l7S-Rz-1TE"/>
                         <viewControllerLayoutGuide type="bottom" id="PGR-1n-3di"/>
@@ -289,22 +289,50 @@
                                     <constraint firstAttribute="width" secondItem="hKN-on-KpM" secondAttribute="height" multiplier="57:55" id="ECt-k4-XYl"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svO-jz-V8x">
+                                <rect key="frame" x="16" y="413" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2S-Kg-KWH">
+                                <rect key="frame" x="16" y="442" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thJ-dm-Uvp">
+                                <rect key="frame" x="224" y="494" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="playButtonTapped:" destination="mTW-aC-Qy2" eventType="touchUpInside" id="Aye-7S-0Fr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hKN-on-KpM" firstAttribute="leading" secondItem="8aL-Nc-Mzc" secondAttribute="leadingMargin" id="4y6-wD-F6r"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="c2S-Kg-KWH" secondAttribute="leading" id="Ahq-4I-xLM"/>
                             <constraint firstItem="hKN-on-KpM" firstAttribute="centerX" secondItem="8aL-Nc-Mzc" secondAttribute="centerX" id="DwX-xQ-iNY"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="svO-jz-V8x" secondAttribute="leading" id="NJS-zq-fbU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="svO-jz-V8x" secondAttribute="trailing" id="NML-ED-65f"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hKN-on-KpM" secondAttribute="trailing" id="WnV-yu-ICE"/>
+                            <constraint firstItem="c2S-Kg-KWH" firstAttribute="top" secondItem="svO-jz-V8x" secondAttribute="bottom" constant="8" id="aga-nD-gYe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="c2S-Kg-KWH" secondAttribute="trailing" id="gWD-uQ-uOl"/>
+                            <constraint firstItem="svO-jz-V8x" firstAttribute="top" secondItem="hKN-on-KpM" secondAttribute="bottom" constant="8" id="gin-pU-un3"/>
                             <constraint firstItem="hKN-on-KpM" firstAttribute="top" secondItem="l7S-Rz-1TE" secondAttribute="bottom" constant="10" id="jyN-Am-nLo"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="albumImageView" destination="hKN-on-KpM" id="Idf-0s-Zh4"/>
+                        <outlet property="atistNameLabel" destination="c2S-Kg-KWH" id="1tI-1S-W9P"/>
+                        <outlet property="trackImageView" destination="hKN-on-KpM" id="RmG-Pv-HrS"/>
+                        <outlet property="trackNameLabel" destination="svO-jz-V8x" id="33k-XV-1Zh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gs4-Vf-lPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4236" y="-179"/>
+            <point key="canvasLocation" x="4236" y="-179.46026986506749"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="83X-6q-Ycm">
