@@ -14,6 +14,7 @@ class TrackViewController: UIViewController {
     @IBOutlet weak var trackImageView: UIImageView!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var atistNameLabel: UILabel!
+    @IBOutlet weak var lyricsTextView: UITextView!
     
     var trackSelected: AlbumTracks!
     var albumImg: String!

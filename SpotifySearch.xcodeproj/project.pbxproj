@@ -92,8 +92,8 @@
 		2D6660661DC39D3C0006ECB6 /* SpotifySearch */ = {
 			isa = PBXGroup;
 			children = (
-				2D66607E1DC3A0470006ECB6 /* Model */,
 				2D66606B1DC39D3C0006ECB6 /* Main.storyboard */,
+				2D66607E1DC3A0470006ECB6 /* Model */,
 				2D01AC881DC6569F00BD087F /* Views */,
 				2D6660821DC3AAE70006ECB6 /* View Controllers */,
 				2D66607B1DC3A0120006ECB6 /* Manager */,
@@ -233,7 +233,6 @@
 				2D6660681DC39D3C0006ECB6 /* AppDelegate.swift in Sources */,
 				2D66607D1DC3A0400006ECB6 /* Album.swift in Sources */,
 				3E2D27531DD1428200A1C38C /* Lyrics.swift in Sources */,
-				2D6660881DC3AE980006ECB6 /* AlbumViewController.swift in Sources */,
 				2D01AC851DC6516200BD087F /* SettingsTableViewController.swift in Sources */,
 				A75F6F6C1DD247C5001204D4 /* Track.swift in Sources */,
 			);
