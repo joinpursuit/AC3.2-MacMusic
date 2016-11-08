@@ -19,9 +19,9 @@
 		2D6660811DC3AADA0006ECB6 /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6660801DC3AADA0006ECB6 /* AlbumsTableViewController.swift */; };
 		2D6660841DC3AB1D0006ECB6 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6660831DC3AB1D0006ECB6 /* AlbumTableViewCell.swift */; };
 		2D6660861DC3AD4D0006ECB6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6660851DC3AD4D0006ECB6 /* Extensions.swift */; };
-		2D6660881DC3AE980006ECB6 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6660871DC3AE980006ECB6 /* AlbumViewController.swift */; };
 		2DDD5D831DD13199002F77FB /* AlbumTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */; };
 		2DDD5D851DD142E5002F77FB /* AlbumTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD5D841DD142E5002F77FB /* AlbumTracks.swift */; };
+		2DDD5D871DD243EE002F77FB /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD5D861DD243EE002F77FB /* TrackViewController.swift */; };
 		2DFFF77B1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,9 +40,9 @@
 		2D6660801DC3AADA0006ECB6 /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
 		2D6660831DC3AB1D0006ECB6 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 		2D6660851DC3AD4D0006ECB6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		2D6660871DC3AE980006ECB6 /* AlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTracksViewController.swift; sourceTree = "<group>"; };
 		2DDD5D841DD142E5002F77FB /* AlbumTracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTracks.swift; sourceTree = "<group>"; };
+		2DDD5D861DD243EE002F77FB /* TrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
 		2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +62,7 @@
 			children = (
 				2D01AC861DC6569B00BD087F /* SliderTableViewCell.swift */,
 				2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */,
+				2DDD5D861DD243EE002F77FB /* TrackViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -128,7 +129,6 @@
 		2D6660821DC3AAE70006ECB6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2D6660871DC3AE980006ECB6 /* AlbumViewController.swift */,
 				2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */,
 				2D6660801DC3AADA0006ECB6 /* AlbumsTableViewController.swift */,
 				2D6660831DC3AB1D0006ECB6 /* AlbumTableViewCell.swift */,
@@ -219,9 +219,9 @@
 				2D6660811DC3AADA0006ECB6 /* AlbumsTableViewController.swift in Sources */,
 				2D01AC871DC6569B00BD087F /* SliderTableViewCell.swift in Sources */,
 				2D01AC831DC645BE00BD087F /* SettingsManager.swift in Sources */,
+				2DDD5D871DD243EE002F77FB /* TrackViewController.swift in Sources */,
 				2D6660681DC39D3C0006ECB6 /* AppDelegate.swift in Sources */,
 				2D66607D1DC3A0400006ECB6 /* Album.swift in Sources */,
-				2D6660881DC3AE980006ECB6 /* AlbumViewController.swift in Sources */,
 				2D01AC851DC6516200BD087F /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
