@@ -35,7 +35,7 @@ class APIRequestManager {
 
     func getTracksUsingAPI(trackID: String, completion:@escaping ((Data?)->Void)) {
     
-    let APIString = "https://api.spotify.com/v1/albums/\(trackID)/tracks?limit=2"
+    let APIString = "https://api.spotify.com/v1/albums/\(trackID)/tracks"
     let APIURL = URL(string: APIString)
     let session = URLSession(configuration: URLSessionConfiguration.default)
     session.dataTask(with: APIURL!) { (data: Data?, response: URLResponse?, error: Error?) in
