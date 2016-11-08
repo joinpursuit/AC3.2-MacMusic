@@ -9,29 +9,39 @@
 import Foundation
 
 enum AlbumTrackParseError: Error {
-    case name, trackID, trackNumber, trackPreviewURL, response
+    case artistName, trackName, trackID, trackNumber, trackPreviewURL, response
 }
 
 class AlbumTracks {
-    let name: String
+    let singerName: String
+    let trackName: String
     let trackID: String
     let trackNumber: Int
     let trackPreviewURL: String
     
-    init(name: String, trackID: String, trackNumber: Int, trackPreviewURL: String) {
-        self.name = name
+    init(singerName: String, trackName: String, trackID: String, trackNumber: Int, trackPreviewURL: String) {
+        self.singerName = singerName
+        self.trackName = trackName
         self.trackID = trackID
         self.trackNumber = trackNumber
         self.trackPreviewURL = trackPreviewURL
     }
     
     convenience init?(from Dictionary: [String : Any]) {
-        guard let name = Dictionary["name"] as? String,
-            let id = Dictionary["id"] as? String,
-            let trackNumber = Dictionary["track_number"] as? Int,
-            let trackPreviewURL = Dictionary["preview_url"] as? String else { return nil}
         
-            self.init(name: name, trackID: id, trackNumber: trackNumber, trackPreviewURL: trackPreviewURL)
+        
+        guard let trackName = Dictionary["name"] as? String, let id = Dictionary["id"] as? String,
+            let trackNumber = Dictionary["track_number"] as? Int,
+            let trackPreviewURL = Dictionary["preview_url"] as? String else {return nil}
+        
+        let artistDict = Dictionary["artists"] as? [[String : Any]] ?? [["" : ""]]
+        let artistName = artistDict[0]["name"] as? String ?? ""
+        
+        
+        self.init(singerName: artistName, trackName: trackName, trackID: id, trackNumber: trackNumber, trackPreviewURL: trackPreviewURL)
+        
+        
+        
     }
     
     static func tracks(from data: Data) -> [AlbumTracks]? {
