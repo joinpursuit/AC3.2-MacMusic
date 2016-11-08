@@ -8,6 +8,7 @@
 
 import UIKit
 
+// this is a change - JG
 class AlbumTracksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var AlbumImageView: UIImageView!
