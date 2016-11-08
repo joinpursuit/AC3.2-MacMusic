@@ -301,13 +301,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thJ-dm-Uvp">
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thJ-dm-Uvp">
                                 <rect key="frame" x="92.5" y="144.5" width="190" height="190"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="190" id="H1H-Ne-ZRp"/>
                                     <constraint firstAttribute="height" constant="190" id="bvG-QZ-jpt"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" backgroundImage="play_button"/>
                                 <connections>
                                     <action selector="playButtonTapped:" destination="mTW-aC-Qy2" eventType="touchUpInside" id="Aye-7S-0Fr"/>
                                 </connections>
@@ -343,6 +343,7 @@
                     <connections>
                         <outlet property="atistNameLabel" destination="c2S-Kg-KWH" id="1tI-1S-W9P"/>
                         <outlet property="lyricsTextView" destination="DhY-id-HyL" id="aqB-2u-rSW"/>
+                        <outlet property="playPauseButtonOutlet" destination="thJ-dm-Uvp" id="TbK-pu-bp7"/>
                         <outlet property="trackImageView" destination="hKN-on-KpM" id="RmG-Pv-HrS"/>
                         <outlet property="trackNameLabel" destination="svO-jz-V8x" id="33k-XV-1Zh"/>
                     </connections>
@@ -372,5 +373,6 @@
     </scenes>
     <resources>
         <image name="filter_empty" width="24" height="24"/>
+        <image name="play_button" width="2265" height="2257"/>
     </resources>
 </document>
