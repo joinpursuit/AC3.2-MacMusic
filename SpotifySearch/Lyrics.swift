@@ -9,11 +9,7 @@
 import Foundation
 
 enum LyricsModelParsedError: Error {
-    case lyricsID
-    case lyricsBody
-    case lyricsLanguage
-    case lyricsLanguageDesctiption
-    
+    case message
 }
 
 class Lyrics {
@@ -51,9 +47,10 @@ class Lyrics {
             let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
             
             guard let jSon = jsonData as? [String:Any] else { return nil}
-            guard let message = jSon["message"] as? [String: Any] else {return nil}
-            guard let body = message["body"] as? [String: Any] else {return nil}
-            guard let lyrics = body["lyrics"] as? [String: Any] else {return nil}
+            
+            guard let message = jSon["message"] as? [String: Any],
+            let body = message["body"] as? [String: Any],
+            let lyrics = body["lyrics"] as? [String: Any] else {throw LyricsModelParsedError.message}
             
             
             if let theLyrics = Lyrics(withDict: lyrics) {
