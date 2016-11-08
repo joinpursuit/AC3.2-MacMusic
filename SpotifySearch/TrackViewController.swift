@@ -25,13 +25,14 @@ class TrackViewController: UIViewController {
     
     var trackArray: [Track] = []
     var trackID = Int()
-    
+    var lyricArray: [Lyrics] = []
     
     var trackBaseURL = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65"
     var trackURL = ""
     
-    var lyricURL = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=84534570&apikey=c4c49544dec7305a9c6a01af96bfdcb3"
-    
+   
+    var lyricsBaseURL = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=c4c49544dec7305a9c6a01af96bfdcb3&track_id="
+    var lyricsURL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,8 +87,19 @@ class TrackViewController: UIViewController {
                 DispatchQueue.main.async {
                     guard self.trackArray.count > 0 else {return}
                     self.trackID = self.trackArray[0].track_id
-                    self.lyricsTextView.text = String(self.trackID)
+                    APIRequestManager.manager.getData(endPoint: self.lyricsBaseURL + String(self.trackID), callback: { (data: Data?) in
+                        if let validLyricData = data {
+                            guard let validLyrics = Lyrics.getInfo(from: validLyricData) else {return}
+                            self.lyricArray = validLyrics
+                            DispatchQueue.main.async {
+                                guard self.lyricArray.count > 0 else {return}
+                                self.lyricsTextView.text = self.lyricArray[0].lyricsBody
+                            }
+                            
+                        }
+                    })
                 }
+                
             }
         }
     }
