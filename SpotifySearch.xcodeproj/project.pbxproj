@@ -23,6 +23,7 @@
 		2DDD5D831DD13199002F77FB /* AlbumTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */; };
 		2DDD5D851DD142E5002F77FB /* AlbumTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD5D841DD142E5002F77FB /* AlbumTracks.swift */; };
 		2DFFF77B1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */; };
+		3E2D27531DD1428200A1C38C /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D27521DD1428200A1C38C /* Lyrics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTracksViewController.swift; sourceTree = "<group>"; };
 		2DDD5D841DD142E5002F77FB /* AlbumTracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTracks.swift; sourceTree = "<group>"; };
 		2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
+		3E2D27521DD1428200A1C38C /* Lyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lyrics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +87,10 @@
 		2D6660661DC39D3C0006ECB6 /* SpotifySearch */ = {
 			isa = PBXGroup;
 			children = (
+				2D66607E1DC3A0470006ECB6 /* Model */,
 				2D66606B1DC39D3C0006ECB6 /* Main.storyboard */,
 				2D01AC881DC6569F00BD087F /* Views */,
 				2D6660821DC3AAE70006ECB6 /* View Controllers */,
-				2D66607E1DC3A0470006ECB6 /* Model */,
 				2D66607B1DC3A0120006ECB6 /* Manager */,
 				2D66607F1DC3A9820006ECB6 /* Supporting Files */,
 			);
@@ -110,6 +112,7 @@
 			children = (
 				2D66607C1DC3A0400006ECB6 /* Album.swift */,
 				2DDD5D841DD142E5002F77FB /* AlbumTracks.swift */,
+				3E2D27521DD1428200A1C38C /* Lyrics.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				2D01AC831DC645BE00BD087F /* SettingsManager.swift in Sources */,
 				2D6660681DC39D3C0006ECB6 /* AppDelegate.swift in Sources */,
 				2D66607D1DC3A0400006ECB6 /* Album.swift in Sources */,
+				3E2D27531DD1428200A1C38C /* Lyrics.swift in Sources */,
 				2D6660881DC3AE980006ECB6 /* AlbumViewController.swift in Sources */,
 				2D01AC851DC6516200BD087F /* SettingsTableViewController.swift in Sources */,
 			);
