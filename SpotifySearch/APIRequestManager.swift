@@ -17,7 +17,7 @@ class APIRequestManager {
         
         guard let searchArtist = artist.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
         
-        //      let APIString = "https://api.spotify.com/v1/search?q=blue&type=album&limit=50"
+        //      let APIString = "s"
         let APIString = "https://api.spotify.com/v1/search?q=\(searchArtist)&type=\(SettingsManager.manager.type)&market=\(market)&limit=\(SettingsManager.manager.limit)"
         let APIURL = URL(string: APIString)
         let session = URLSession(configuration: URLSessionConfiguration.default)
