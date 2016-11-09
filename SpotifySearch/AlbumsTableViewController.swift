@@ -14,7 +14,12 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     internal var album: [Album] = []
     
     var trackArray: [Track] = []
-    var track = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65&q_track=Complicated&q_artist=Avril&page_size=10"
+    
+    var iTunesArray: [iTunes] = []
+    
+    var trackURL = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65&q_track=Complicated&q_artist=Avril&page_size=10"
+    
+    var iTunesURL = "https://itunes.apple.com/search?country=US&media=music&entity=musicTrack&term=adele%20hello"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +51,16 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
 //            }
 //        }
         
+        APIRequestManager.manager.getData(endPoint: iTunesURL) { (data: Data?) in
+            if let validData = data {
+                guard let validiTunes = iTunes.getiTunes(from: validData) else {return}
+                self.iTunesArray = validiTunes
+                dump(self.iTunesArray)
+//                dump(validData)
+//                print("**************")
+                //dump(validiTunes)
+            }
+        }
     }
     
     func createSearchBar() {
