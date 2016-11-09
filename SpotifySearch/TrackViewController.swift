@@ -46,10 +46,7 @@ class TrackViewController: UIViewController {
         loadTrackId()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  
     
     func playAudio() {
         
@@ -113,6 +110,28 @@ class TrackViewController: UIViewController {
                 
             }
         }
+    }
+    
+    
+    func addToFavorites() {
+        let defaults = UserDefaults.standard
+        
+        var favoriteSongs = [[:]]
+        var favoriteSong = [String: String]()
+        
+        favoriteSong.updateValue("track_id", forKey: trackSelected.trackID)
+        favoriteSong.updateValue("track_name", forKey: trackSelected.trackName)
+        favoriteSong.updateValue("artist_name", forKey: trackSelected.singerName)
+        favoriteSong.updateValue("track_lyrics_id", forKey: String(trackID))
+        
+        favoriteSongs.append(favoriteSong)
+        defaults.set(favoriteSongs, forKey: "favoriteSongs")
+        print(favoriteSongs)
+    }
+    
+    
+    @IBAction func favoriteSongPressed(_ sender: UIButton) {
+        addToFavorites()
     }
     
     

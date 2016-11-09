@@ -22,6 +22,8 @@
 		2DDD5D831DD13199002F77FB /* AlbumTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */; };
 		2DDD5D851DD142E5002F77FB /* AlbumTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD5D841DD142E5002F77FB /* AlbumTracks.swift */; };
 		2DDD5D871DD243EE002F77FB /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD5D861DD243EE002F77FB /* TrackViewController.swift */; };
+		2DEE85FB1DD3B0A8004F5C69 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEE85FA1DD3B0A8004F5C69 /* FavoritesTableViewController.swift */; };
+		2DEE85FD1DD3B0F3004F5C69 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEE85FC1DD3B0F3004F5C69 /* FavoritesTableViewCell.swift */; };
 		2DFFF77B1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */; };
 		3E2D27531DD1428200A1C38C /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D27521DD1428200A1C38C /* Lyrics.swift */; };
 		A75F6F6C1DD247C5001204D4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75F6F6B1DD247C5001204D4 /* Track.swift */; };
@@ -46,6 +48,8 @@
 		2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTracksViewController.swift; sourceTree = "<group>"; };
 		2DDD5D841DD142E5002F77FB /* AlbumTracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTracks.swift; sourceTree = "<group>"; };
 		2DDD5D861DD243EE002F77FB /* TrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
+		2DEE85FA1DD3B0A8004F5C69 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		2DEE85FC1DD3B0F3004F5C69 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		3E2D27521DD1428200A1C38C /* Lyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lyrics.swift; sourceTree = "<group>"; };
 		A75F6F6B1DD247C5001204D4 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Track.swift; path = ../Track.swift; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				2D01AC861DC6569B00BD087F /* SliderTableViewCell.swift */,
+				2DEE85FC1DD3B0F3004F5C69 /* FavoritesTableViewCell.swift */,
 				2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */,
 				2D6660831DC3AB1D0006ECB6 /* AlbumTableViewCell.swift */,
 			);
@@ -139,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				2D6660801DC3AADA0006ECB6 /* AlbumsTableViewController.swift */,
+				2DEE85FA1DD3B0A8004F5C69 /* FavoritesTableViewController.swift */,
 				2DDD5D821DD13199002F77FB /* AlbumTracksViewController.swift */,
 				2DDD5D861DD243EE002F77FB /* TrackViewController.swift */,
 				2D01AC841DC6516200BD087F /* SettingsTableViewController.swift */,
@@ -220,9 +226,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D6660841DC3AB1D0006ECB6 /* AlbumTableViewCell.swift in Sources */,
+				2DEE85FD1DD3B0F3004F5C69 /* FavoritesTableViewCell.swift in Sources */,
 				2DDD5D851DD142E5002F77FB /* AlbumTracks.swift in Sources */,
 				2DFFF77B1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift in Sources */,
 				2DDD5D831DD13199002F77FB /* AlbumTracksViewController.swift in Sources */,
+				2DEE85FB1DD3B0A8004F5C69 /* FavoritesTableViewController.swift in Sources */,
 				2D6660861DC3AD4D0006ECB6 /* Extensions.swift in Sources */,
 				2D66607A1DC39DA90006ECB6 /* APIRequestManager.swift in Sources */,
 				2D6660811DC3AADA0006ECB6 /* AlbumsTableViewController.swift in Sources */,
