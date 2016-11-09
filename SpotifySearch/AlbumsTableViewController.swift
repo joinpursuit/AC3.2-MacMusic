@@ -13,6 +13,9 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     
     internal var album: [Album] = []
     
+    var trackArray: [Track] = []
+    var track = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65&q_track=Complicated&q_artist=Avril&page_size=10"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
@@ -33,6 +36,15 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
                 }
             }
         }
+        
+//        APIRequestManager.manager.getData(endPoint: track) { (data: Data?) in
+//            if let validData = data {
+//                guard let validTrack = Track.getTrack(from: validData) else {return}
+//                self.trackArray = validTrack
+//                dump(self.trackArray)
+//                dump(validTrack)
+//            }
+//        }
         
     }
     
@@ -77,7 +89,7 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCellID", for: indexPath) as! AlbumTableViewCell
         
         let album = self.album[indexPath.row]
-        cell.albumNameLabel.text = "\(indexPath.row + 1) : \(album.name)"
+        cell.albumNameLabel.text = album.name
         cell.albumImageView.downloadImage(urlString: album.smallImageURL!)
         
         return cell

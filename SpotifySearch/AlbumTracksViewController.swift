@@ -8,6 +8,7 @@
 
 import UIKit
 
+// this is a change - JG
 class AlbumTracksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var AlbumImageView: UIImageView!
@@ -15,6 +16,8 @@ class AlbumTracksViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var trackTableView: UITableView!
     
     var albumSelected: Album!
+    
+    internal var tracks: [AlbumTracks] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,28 +28,48 @@ class AlbumTracksViewController: UIViewController, UITableViewDelegate, UITableV
         self.title = albumSelected.name
         AlbumImageView.downloadImage(urlString: albumSelected.largeImageURL)
         
+        getAlbumTracks()
+    }
+    
+    func getAlbumTracks() {
         APIRequestManager.manager.getTracksUsingAPI(trackID: albumSelected.albumID, completion: { (data: Data?) in
-            if let unwrappedReturnedAlbumData = Album.albums(from: data!) {
-                self.album = unwrappedReturnedAlbumData
+            if let unwrappedReturnedAlbumData = AlbumTracks.tracks(from: data!){
+                self.tracks = unwrappedReturnedAlbumData
                 
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.trackTableView.reloadData()
                 }
             }
         }
-        
-        func numberOfSections(in tableView: UITableView) -> Int {
-            return 1
-        }
-        
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 1
-        }
-        
-        
-        
-        
-        
-        
+        )}
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tracks.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TrackCellID", for: indexPath)
+        let track = tracks[indexPath.row]
+        cell.textLabel?.text = "\(String(track.trackNumber)). \(track.trackName)"
+        
+        return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueToTrack" {
+            if let dest = segue.destination as? TrackViewController,
+                let indexPath = trackTableView.indexPathForSelectedRow {
+                dest.trackSelected = tracks[indexPath.row]
+                dest.albumImg = albumSelected.largeImageURL
+
+            }
+        }
+    }
+    
+    
+    
 }

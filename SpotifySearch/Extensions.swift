@@ -23,7 +23,7 @@ extension UIImageView {
             } catch let err {
                 print("imageData error ==> \n\(err)")
             }
-            guard let data = imageData, let downloadedImage = UIImage(data: data) else { return }
+            guard let data = imageData, let downloadedImage = UIImage(data: data) else {return}
             cacheImage.setObject(downloadedImage, forKey: urlString as NSString)
            
             DispatchQueue.main.async {
