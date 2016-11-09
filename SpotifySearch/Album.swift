@@ -17,6 +17,7 @@ internal struct Album {
     internal let smallImageURL: String?
     internal let largeImageURL: String
     internal let albumID: String
+    internal let artistID: String
     
     static func albums(from data: Data) -> [Album]? {
         
@@ -36,7 +37,13 @@ internal struct Album {
                 
                 guard let albumID = albumObject["id"] as? String else {throw AlbumModelParseError.ID}
                 
-            guard let albumImages = albumObject["images"] as? [Any]
+                
+                guard let artistInfo = albumObject["artists"] as? [[String:Any]] else {return}
+                guard let artistID = artistInfo[0]["id"] as? String else {return}
+                
+                
+                
+                guard let albumImages = albumObject["images"] as? [Any]
                 else {throw AlbumModelParseError.smallImageURL}
               
 //                guard let albumImages = albumObject["images"] as? [[String: Any]]
@@ -51,7 +58,7 @@ internal struct Album {
                 let albumLargeImageDict = albumImages[0] as? [String : Any] ?? ["" : ""]
                 let albumLargeImageURL = albumLargeImageDict["url"] as? String ?? ""
                 
-                let album = Album(name: albumName, smallImageURL: albumSmallImageURL, largeImageURL: albumLargeImageURL, albumID: albumID)
+                let album = Album(name: albumName, smallImageURL: albumSmallImageURL, largeImageURL: albumLargeImageURL, albumID: albumID, artistID: artistID)
 
                 albumInfo.append(album)
             })

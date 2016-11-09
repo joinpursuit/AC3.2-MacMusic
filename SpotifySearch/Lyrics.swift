@@ -14,7 +14,7 @@ enum LyricsModelParsedError: Error {
 
 class Lyrics {
     let lyricsID: Int
-    let lyricsBody: String
+    let lyricsBody: String?
     let lyricsLanguage: String
     let lyricsLanguageDescription: String
     
