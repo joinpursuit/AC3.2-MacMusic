@@ -23,6 +23,7 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadData()
         createSearchBar()
         self.navigationController?.hidesBarsOnSwipe = true
