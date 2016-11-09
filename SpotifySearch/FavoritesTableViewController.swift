@@ -25,27 +25,37 @@ class Favorites {
 
 class FavoritesTableViewController: UITableViewController {
     
-
+    var favoritesArray = [Favorites]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let favoriteSongsDict = UserDefaults.standard.value(forKey: "favoriteSongs") as? [[String : String]] {
-            favoriteSongsDict.forEach({ (defaultSongObject) in
-                if let songName = defaultSongObject["track_name"],
-                    let songID = defaultSongObject["track_id"],
-                    let songLyricsID = defaultSongObject["track_lyrics_id"],
-                    let artistName = defaultSongObject[ "artist_name"] {
-                    
-                    let favoriteSongs = Favorites(songName: songName, songID: songID, songLyricsID: songLyricsID, artistName: songName)
-                }
-                
-            })
-            
-        }
-        
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let favoriteSongsDict = UserDefaults.standard.value(forKey: "favoriteSongs") as? [[String : String]] {
+            print(favoriteSongsDict)
+            for dict in favoriteSongsDict {
+//                guard dict.keys.count > 1 else {return}
+            if let songName = dict["track_name"],
+                    let songID = dict["track_id"],
+                    let songLyricsID = dict["track_lyrics_id"],
+                    let artistName = dict[ "artist_name"] {
+                    
+                    let favoriteSongs = Favorites(songName: songName, songID: songID, songLyricsID: songLyricsID, artistName: artistName)
+                    favoritesArray.append(favoriteSongs)
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    }
 
 
     // MARK: - Table view data source
@@ -57,13 +67,15 @@ class FavoritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return favoritesArray.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteSongCellID", for: indexPath) as! FavoritesTableViewCell
-
+        let faveSong = favoritesArray[indexPath.row]
+        cell.favoriteTrackLabel.text = faveSong.songName
+        print(favoritesArray)
         return cell
     }
     

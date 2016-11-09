@@ -9,10 +9,13 @@
 import UIKit
 
 class BrowseCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var artistImage: UIImageView!
     @IBOutlet weak var artistName: UILabel!
     
-    var artist: Artist!
+    override func prepareForReuse() {
+        self.artistImage.image = nil
+    }
     
 
 }

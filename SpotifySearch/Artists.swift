@@ -23,21 +23,24 @@ class Artist {
     static func getArtists(from data: Data) -> [Artist]? {
         var artistInfo = [Artist]()
         do {
-            let artistJSONData: Any = try? JSONSerialization.jsonObject(with: data, options: [])
+            let artistJSONData: Any = try JSONSerialization.jsonObject(with: data, options: [])
             
             guard let artistsCasted = artistJSONData as? [String : Any],
-            let artistArr = artistsCasted["artists"] as? [[String : Any]] else {return nil}
+                let artistArr = artistsCasted["artists"] as? [[String : Any]] else {return nil}
             
             for artists in artistArr {
-              guard let artistID = artists["id"] as? String,
-                let imageArray = artists["images"] as? [[String: Any]],
-                let image = imageArray[1]["url"] as? String,
-                let artistName = artists["name"] as? String else {return nil}
-               
+                guard let artistID = artists["id"] as? String,
+                    let imageArray = artists["images"] as? [[String: Any]],
+                    let image = imageArray[1]["url"] as? String,
+                    let artistName = artists["name"] as? String else {return nil}
+                
                 let fullArtistInfo = Artist(artistID: artistID, image: image, artistName: artistName)
                 artistInfo.append(fullArtistInfo)
             }
-}
+        }
+        catch {
+            print("***** ERROR OCCURED WHILE PARSING DATA: \(error)")
+        }
         return artistInfo
-}
+    }
 }
