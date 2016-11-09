@@ -116,15 +116,15 @@ class TrackViewController: UIViewController {
     func addToFavorites() {
         let defaults = UserDefaults.standard
         
-        var favoriteSongs = [[:]]
+        var favoriteSongs = [[String:String]]()
         var favoriteSong = [String: String]()
         
-        favoriteSong.updateValue("track_id", forKey: trackSelected.trackID)
-        favoriteSong.updateValue("track_name", forKey: trackSelected.trackName)
-        favoriteSong.updateValue("artist_name", forKey: trackSelected.singerName)
-        favoriteSong.updateValue("track_lyrics_id", forKey: String(trackID))
-        
+        favoriteSong.updateValue(trackSelected.trackID, forKey: "track_id")
+        favoriteSong.updateValue(trackSelected.trackName, forKey: "track_name")
+        favoriteSong.updateValue(trackSelected.singerName, forKey: "artist_name")
+        favoriteSong.updateValue(String(trackID), forKey: "track_lyrics_id")
         favoriteSongs.append(favoriteSong)
+        
         defaults.set(favoriteSongs, forKey: "favoriteSongs")
         print(favoriteSongs)
     }
