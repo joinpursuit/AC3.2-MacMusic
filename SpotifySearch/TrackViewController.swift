@@ -15,6 +15,9 @@ class TrackViewController: UIViewController {
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var atistNameLabel: UILabel!
     @IBOutlet weak var lyricsTextView: UITextView!
+    @IBOutlet weak var iTunesButton: UIButton!
+    @IBOutlet weak var youTubeButton: UIButton!
+    @IBOutlet weak var socialButton: UIButton!
     
     var trackSelected: AlbumTracks!
     var albumImg: String!
@@ -132,6 +135,16 @@ class TrackViewController: UIViewController {
     
     @IBAction func favoriteSongPressed(_ sender: UIButton) {
         addToFavorites()
+    }
+    
+    @IBAction func iTunesButtonPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func youTubeButtonPressed(_ sender: UIButton) {
+    }
+    
+    
+    @IBAction func socialButtonPressed(_ sender: UIButton) {
     }
     
     
