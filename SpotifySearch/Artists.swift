@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Artists {
+class Artist {
     
     let artistID: String
     let image: String
@@ -20,8 +20,8 @@ class Artists {
         self.artistName = artistName
     }
     
-    static func getArtists(from data: Data) -> [Artists]? {
-        var artistInfo = [Artists]()
+    static func getArtists(from data: Data) -> [Artist]? {
+        var artistInfo = [Artist]()
         do {
             let artistJSONData: Any = try? JSONSerialization.jsonObject(with: data, options: [])
             
@@ -34,7 +34,7 @@ class Artists {
                 let image = imageArray[1]["url"] as? String,
                 let artistName = artists["name"] as? String else {return nil}
                
-                let fullArtistInfo = Artists(artistID: artistID, image: image, artistName: artistName)
+                let fullArtistInfo = Artist(artistID: artistID, image: image, artistName: artistName)
                 artistInfo.append(fullArtistInfo)
             }
 }
