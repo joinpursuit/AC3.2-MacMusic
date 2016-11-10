@@ -27,9 +27,9 @@
 		2DFFF77B1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */; };
 		3E2D27531DD1428200A1C38C /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D27521DD1428200A1C38C /* Lyrics.swift */; };
 		3E2E68841DD3BB4A003E844D /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2E68831DD3BB4A003E844D /* Artists.swift */; };
-		A72022E51DD3BED2008444FE /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72022E41DD3BED2008444FE /* iTunes.swift */; };
 		3ECF98F41DD3C751007FF3B9 /* BrowseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF98F31DD3C751007FF3B9 /* BrowseCollectionViewController.swift */; };
 		3ECF98F61DD3CB72007FF3B9 /* BrowseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF98F51DD3CB72007FF3B9 /* BrowseCollectionViewCell.swift */; };
+		A72022E51DD3BED2008444FE /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72022E41DD3BED2008444FE /* iTunes.swift */; };
 		A75F6F6C1DD247C5001204D4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75F6F6B1DD247C5001204D4 /* Track.swift */; };
 		A75F6F6E1DD247E0001204D4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75F6F6D1DD247E0001204D4 /* Genre.swift */; };
 /* End PBXBuildFile section */
@@ -57,9 +57,9 @@
 		2DFFF77A1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		3E2D27521DD1428200A1C38C /* Lyrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lyrics.swift; sourceTree = "<group>"; };
 		3E2E68831DD3BB4A003E844D /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
-		A72022E41DD3BED2008444FE /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iTunes.swift; path = ../iTunes.swift; sourceTree = "<group>"; };
 		3ECF98F31DD3C751007FF3B9 /* BrowseCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCollectionViewController.swift; sourceTree = "<group>"; };
 		3ECF98F51DD3CB72007FF3B9 /* BrowseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCollectionViewCell.swift; sourceTree = "<group>"; };
+		A72022E41DD3BED2008444FE /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iTunes.swift; path = ../iTunes.swift; sourceTree = "<group>"; };
 		A75F6F6B1DD247C5001204D4 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Track.swift; path = ../Track.swift; sourceTree = "<group>"; };
 		A75F6F6D1DD247E0001204D4 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Genre.swift; path = ../Genre.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,7 +196,7 @@
 				TargetAttributes = {
 					2D6660631DC39D3C0006ECB6 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = BAQHSM59S2;
+						DevelopmentTeam = P29FUG645U;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -381,10 +381,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BAQHSM59S2;
+				DEVELOPMENT_TEAM = P29FUG645U;
 				INFOPLIST_FILE = SpotifySearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.CristopherC.SpotifySearch;
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.ana.SpotifySearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -394,10 +395,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BAQHSM59S2;
+				DEVELOPMENT_TEAM = P29FUG645U;
 				INFOPLIST_FILE = SpotifySearch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.CristopherC.SpotifySearch;
+				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.ana.SpotifySearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
