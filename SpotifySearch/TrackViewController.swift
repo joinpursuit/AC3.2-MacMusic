@@ -29,6 +29,7 @@ class TrackViewController: UIViewController {
     var trackArray: [Track] = []
     var trackID = Int()
     var lyricArray: [Lyrics] = []
+    var iTunesArray: [iTunes] = []
     
     var trackBaseURL = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65"
     var trackURL = ""
@@ -36,6 +37,9 @@ class TrackViewController: UIViewController {
    
     var lyricsBaseURL = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=c4c49544dec7305a9c6a01af96bfdcb3&track_id="
     var lyricsURL = ""
+    
+    var iTunesBaseURL = "https://itunes.apple.com/search?country=US&media=music&entity=musicTrack"
+    var iTunesURL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,6 +142,30 @@ class TrackViewController: UIViewController {
     }
     
     @IBAction func iTunesButtonPressed(_ sender: UIButton) {
+        guard let searchiTunesName: String = trackSelected.trackName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+        guard let searchiTunesSinger: String = trackSelected.singerName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+        iTunesURL = iTunesBaseURL + "&term=" + searchiTunesName + "%20" + searchiTunesSinger
+        print("To get iTunes Object" + iTunesURL + " Ends Here")
+
+        APIRequestManager.manager.getData(endPoint: iTunesURL) { (data: Data?) in
+            guard let validData = data else {return}
+            guard let validiTunes = iTunes.getiTunes(from: validData) else {return}
+            self.iTunesArray = validiTunes
+            DispatchQueue.main.async {
+                if self.iTunesArray.count > 0 {
+                let iTunesTrackURL = self.iTunesArray[0].trackViewUrl
+                    print("To get iTunes Link URL" + iTunesTrackURL + " Ends Here")
+                    guard let url = URL(string: iTunesTrackURL) else {return}
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+        }
+        
+//        guard let linkedIn = linkedInAccount else {return}
+//        let linkedInURLString = "https://www.linkedin.com/in/\(linkedIn)"
+//        guard let url = URL(string: linkedInURLString) else {return}
+//        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        
     }
     
     @IBAction func youTubeButtonPressed(_ sender: UIButton) {
