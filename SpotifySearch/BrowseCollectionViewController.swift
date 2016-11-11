@@ -26,6 +26,9 @@ class BrowseCollectionViewController: UICollectionViewController {
             if let userInfo = notification.userInfo as? [String: String] {
                 if let id = userInfo["searchTerm"] {
                     self.artistIDs = id
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                    }
                 }
             }
         }
@@ -33,8 +36,7 @@ class BrowseCollectionViewController: UICollectionViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        loadRelatedArtists()
-        self.collectionView?.reloadData()
+        self.loadRelatedArtists()
         
     }
     
