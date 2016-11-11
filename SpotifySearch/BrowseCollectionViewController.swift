@@ -12,14 +12,38 @@ class BrowseCollectionViewController: UICollectionViewController {
     
     var relatedArtists: [Artist] = []
     
+    var artistIDs: String = "4tZwfgrHOc3mvqYlEYSvV"
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadRelatedArtists()
-       
+        let notificationName = Notification.Name(rawValue: "searchDidChange")
+        NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil) { (notification) in
+            if let userInfo = notification.userInfo as? [String: String] {
+                if let id = userInfo["searchTerm"] {
+                    self.artistIDs = id
+                }
+            }
+        }
     }
     
-    func loadRelatedArtists (){
-        APIRequestManager.manager.getData(endPoint: "https://api.spotify.com/v1/artists/5K4W6rqBFWDnAN6FQUkS6x/related-artists") { (data: Data?) in
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadRelatedArtists()
+        self.collectionView?.reloadData()
+
+    }
+
+//    func searchDidChange(artistID: String) {
+//        self.artistIDs = artistID
+//        print(artistIDs)
+//    }
+    
+       func loadRelatedArtists (){
+        print(artistIDs)
+        APIRequestManager.manager.getData(endPoint: "https://api.spotify.com/v1/artists/\(artistIDs)/related-artists") { (data: Data?) in
             if let validData = data,
                 let validArtist = Artist.getArtists(from: validData) {
                 self.relatedArtists = validArtist
@@ -65,6 +89,11 @@ class BrowseCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    /*
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        <#code#>
+    }
+    */
     // MARK: UICollectionViewDelegate
     
     /*

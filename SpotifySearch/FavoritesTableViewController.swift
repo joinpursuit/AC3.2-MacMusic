@@ -35,9 +35,8 @@ class FavoritesTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if let favoriteSongsDict = UserDefaults.standard.value(forKey: "favoriteSongs") as? [[String : String]] {
-            print(favoriteSongsDict)
+            favoritesArray.removeAll()
             for dict in favoriteSongsDict {
-//                guard dict.keys.count > 1 else {return}
             if let songName = dict["track_name"],
                     let songID = dict["track_id"],
                     let songLyricsID = dict["track_lyrics_id"],
@@ -45,15 +44,11 @@ class FavoritesTableViewController: UITableViewController {
                     
                     let favoriteSongs = Favorites(songName: songName, songID: songID, songLyricsID: songLyricsID, artistName: artistName)
                     favoritesArray.append(favoriteSongs)
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    
+                
                 }
                 
             }
-            
+            self.tableView.reloadData()
         }
     }
 

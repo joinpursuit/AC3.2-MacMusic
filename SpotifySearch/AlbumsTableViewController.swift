@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol SearchDelegate {
+    func searchDidChange(artistID: String)
+}
+
 class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     
+    internal var delegate: SearchDelegate?
     
     internal var album: [Album] = []
     
@@ -88,14 +93,15 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     
     
     
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else {return}
         APIRequestManager.manager.getAlbumsUsingAPI(artist: searchTerm) { (data: Data?) in
             if let unwrappedReturnedAlbumData = Album.albums(from: data!) {
                 self.album = unwrappedReturnedAlbumData
-                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "searchDidChange") , object: nil, userInfo: ["searchTerm":"\(self.album[0].artistID)"])
                 }
             }
         }
