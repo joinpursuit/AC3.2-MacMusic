@@ -8,13 +8,8 @@
 
 import UIKit
 
-protocol SearchDelegate {
-    func searchDidChange(artistID: String)
-}
-
 class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     
-    internal var delegate: SearchDelegate?
     
     internal var album: [Album] = []
     
@@ -52,25 +47,15 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         
-//        APIRequestManager.manager.getData(endPoint: track) { (data: Data?) in
-//            if let validData = data {
-//                guard let validTrack = Track.getTrack(from: validData) else {return}
-//                self.trackArray = validTrack
-//                dump(self.trackArray)
-//                dump(validTrack)
-//            }
-//        }
+        
         
         APIRequestManager.manager.getData(endPoint: iTunesURL) { (data: Data?) in
             if let validData = data {
                 guard let validiTunes = iTunes.getiTunes(from: validData) else {return}
                 self.iTunesArray = validiTunes
                 dump(self.iTunesArray)
-//                dump(validData)
-//                print("**************")
-                //dump(validiTunes)
             }
-        
+            
             APIRequestManager.manager.getData(endPoint: self.videoURL, callback: { (data: Data?) in
                 if let validData = data{
                     dump(validData)
@@ -78,8 +63,8 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
                     self.videosArray = validVideos
                     dump(self.videosArray)
                 }
-        })
-        
+            })
+            
         }
     }
     
@@ -101,7 +86,8 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
                 self.album = unwrappedReturnedAlbumData
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "searchDidChange") , object: nil, userInfo: ["searchTerm":"\(self.album[0].artistID)"])
+                    
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "searchDidChange") , object: nil, userInfo: ["searchTerm":"\(self.album[0].albumID)"])
                 }
             }
         }

@@ -135,6 +135,10 @@ class TrackViewController: UIViewController {
         favoriteSong.updateValue(trackSelected.trackName, forKey: "track_name")
         favoriteSong.updateValue(trackSelected.singerName, forKey: "artist_name")
         favoriteSong.updateValue(String(trackID), forKey: "track_lyrics_id")
+        favoriteSong.updateValue(String(trackSelected.trackNumber), forKey: "track_number")
+        favoriteSong.updateValue(trackSelected.trackPreviewURL, forKey: "track_preview_URL")
+        favoriteSong.updateValue(albumImg, forKey: "album_Img")
+        
         
         if var favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
             favoriteSongs.append(favoriteSong)

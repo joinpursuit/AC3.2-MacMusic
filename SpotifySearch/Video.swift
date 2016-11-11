@@ -63,8 +63,8 @@ class Video {
                     let description = snippet["description"] as? String,
                     let channelTitle = snippet["channelTitle"] as? String else {
                     throw VideoModelParseError.title
-                    throw VideoModelParseError.description
-                    throw VideoModelParseError.channelTitle
+//                    throw VideoModelParseError.description
+//                    throw VideoModelParseError.channelTitle
                 }
                 
                 let v = Video(videoId: videoId, title: title, description: description, channelTitle: channelTitle)
