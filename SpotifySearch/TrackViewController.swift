@@ -64,7 +64,7 @@ class TrackViewController: UIViewController {
     
     
     // www.swiftdeveloperblog.com/play-music-mp3-file-example-in-swift/
-    //Above link is a tutorial for playing an mp3 file
+    //Above link is a tutorial for playing an mp3 file --
     @IBOutlet weak var playPauseButtonOutlet: UIButton!
     
     @IBAction func playButtonTapped(_ sender: UIButton) {

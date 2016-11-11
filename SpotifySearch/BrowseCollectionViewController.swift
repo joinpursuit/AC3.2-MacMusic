@@ -8,18 +8,45 @@
 
 import UIKit
 
-class BrowseCollectionViewController: UICollectionViewController {
+class BrowseCollectionViewController: UICollectionViewController, SearchDelegate {
     
     var relatedArtists: [Artist] = []
     
+    var artistIDs: String = ""
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadRelatedArtists()
-       
+        let notificationName = Notification.Name(rawValue: "searchDidChange")
+        NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil) { (notification) in
+            if let userInfo = notification.userInfo as? [String: String] {
+                if let id = userInfo["searchTerm"] {
+                    self.artistIDs = id
+                }
+            }
+        }
     }
     
-    func loadRelatedArtists (){
-        APIRequestManager.manager.getData(endPoint: "https://api.spotify.com/v1/artists/5K4W6rqBFWDnAN6FQUkS6x/related-artists") { (data: Data?) in
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadRelatedArtists()
+        self.collectionView?.reloadData()
+
+    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        code
+//    }
+    
+    func searchDidChange(artistID: String) {
+        self.artistIDs = artistID
+        print(artistIDs)
+    }
+//      var relatedArtists = "https://api.spotify.com/v1/artists/\(artistID)/related-artists"
+    
+       func loadRelatedArtists (){
+        print(artistIDs)
+        APIRequestManager.manager.getData(endPoint: "https://api.spotify.com/v1/artists/\(artistIDs)/related-artists") { (data: Data?) in
             if let validData = data,
                 let validArtist = Artist.getArtists(from: validData) {
                 self.relatedArtists = validArtist
@@ -63,6 +90,10 @@ class BrowseCollectionViewController: UICollectionViewController {
         cell.artistImage.downloadImage(urlString: theArtist.image)
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        <#code#>
     }
     
     // MARK: UICollectionViewDelegate
