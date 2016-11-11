@@ -14,11 +14,13 @@ class BrowseCollectionViewController: UICollectionViewController {
     
     var artistIDs: String = "3WGpXCj9YhhfX11TToZcXP"
     
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loadRelatedArtists()
+
+        loadRelatedArtists()
+        
         let notificationName = Notification.Name(rawValue: "searchDidChange")
         NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil) { (notification) in
             if let userInfo = notification.userInfo as? [String: String] {
@@ -33,15 +35,13 @@ class BrowseCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         loadRelatedArtists()
         self.collectionView?.reloadData()
-
+        
     }
-
-//    func searchDidChange(artistID: String) {
-//        self.artistIDs = artistID
-//        print(artistIDs)
-//    }
     
-       func loadRelatedArtists (){
+
+
+    
+    func loadRelatedArtists (){
         APIRequestManager.manager.getData(endPoint: "https://api.spotify.com/v1/artists/\(artistIDs)/related-artists") { (data: Data?) in
             if let validData = data,
                 let validArtist = Artist.getArtists(from: validData) {
@@ -99,6 +99,7 @@ class BrowseCollectionViewController: UICollectionViewController {
         }
     }
     
+
     // MARK: UICollectionViewDelegate
     
     /*

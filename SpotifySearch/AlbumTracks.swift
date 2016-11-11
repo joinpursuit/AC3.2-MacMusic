@@ -18,13 +18,17 @@ class AlbumTracks {
     let trackID: String
     let trackNumber: Int
     let trackPreviewURL: String
+    let trackLyrics: String
+    let albumImg: String
     
-    init(singerName: String, trackName: String, trackID: String, trackNumber: Int, trackPreviewURL: String) {
+    init(singerName: String, trackName: String, trackID: String, trackNumber: Int, trackPreviewURL: String, trackLyrics: String, albumImg: String) {
         self.singerName = singerName
         self.trackName = trackName
         self.trackID = trackID
         self.trackNumber = trackNumber
         self.trackPreviewURL = trackPreviewURL
+        self.trackLyrics = trackLyrics
+        self.albumImg = albumImg
     }
     
     convenience init?(from Dictionary: [String : Any]) {
@@ -36,9 +40,11 @@ class AlbumTracks {
         
         let artistDict = Dictionary["artists"] as? [[String : Any]] ?? [["" : ""]]
         let artistName = artistDict[0]["name"] as? String ?? ""
+        let trackLyrics = ""
+        let trackImg = ""
         
         
-        self.init(singerName: artistName, trackName: trackName, trackID: id, trackNumber: trackNumber, trackPreviewURL: trackPreviewURL)
+        self.init(singerName: artistName, trackName: trackName, trackID: id, trackNumber: trackNumber, trackPreviewURL: trackPreviewURL, trackLyrics: trackLyrics, albumImg: trackImg)
         
         
         
