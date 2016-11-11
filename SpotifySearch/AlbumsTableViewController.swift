@@ -8,14 +8,10 @@
 
 import UIKit
 
-protocol SearchDelegate {
-    func searchDidChange(artistID: String)
-}
+
 
 class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
-    
-    internal var delegate: SearchDelegate?
-    
+        
     internal var album: [Album] = []
     
     var artistName = ""
@@ -43,7 +39,6 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
             if let userInfo = notification.userInfo as? [String: String] {
                 if let name = userInfo["searchArtist"] {
                     self.artistName = name
-                    print("this is the \(name)")
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
                                 
@@ -54,7 +49,6 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
                 }
                 
             }
-        print("this is the name of the artist \(self.artistName) use it?!")
     
 
         self.navigationController?.hidesBarsOnSwipe = true
