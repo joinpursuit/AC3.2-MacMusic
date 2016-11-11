@@ -15,6 +15,9 @@ class TrackViewController: UIViewController {
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var atistNameLabel: UILabel!
     @IBOutlet weak var lyricsTextView: UITextView!
+    @IBOutlet weak var iTunesButton: UIButton!
+    @IBOutlet weak var youTubeButton: UIButton!
+    @IBOutlet weak var socialButton: UIButton!
     
     var trackSelected: AlbumTracks!
     var albumImg: String!
@@ -114,24 +117,36 @@ class TrackViewController: UIViewController {
     
     
     func addToFavorites() {
-        let defaults = UserDefaults.standard
+        let userDefaults = UserDefaults.standard
         
-        var favoriteSongs = [[String:String]]()
         var favoriteSong = [String: String]()
-        
         favoriteSong.updateValue(trackSelected.trackID, forKey: "track_id")
         favoriteSong.updateValue(trackSelected.trackName, forKey: "track_name")
         favoriteSong.updateValue(trackSelected.singerName, forKey: "artist_name")
         favoriteSong.updateValue(String(trackID), forKey: "track_lyrics_id")
-        favoriteSongs.append(favoriteSong)
         
-        defaults.set(favoriteSongs, forKey: "favoriteSongs")
-        print(favoriteSongs)
+        if var favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
+            favoriteSongs.append(favoriteSong)
+            userDefaults.set(favoriteSongs, forKey: "favoriteSongs")
+        } else {
+            userDefaults.set([favoriteSong], forKey: "favoriteSongs")
+        }
+        
     }
     
     
     @IBAction func favoriteSongPressed(_ sender: UIButton) {
         addToFavorites()
+    }
+    
+    @IBAction func iTunesButtonPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func youTubeButtonPressed(_ sender: UIButton) {
+    }
+    
+    
+    @IBAction func socialButtonPressed(_ sender: UIButton) {
     }
     
     
