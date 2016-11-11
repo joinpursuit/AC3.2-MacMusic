@@ -8,16 +8,17 @@
 
 import UIKit
 
-class BrowseCollectionViewController: UICollectionViewController, SearchDelegate {
+class BrowseCollectionViewController: UICollectionViewController {
     
     var relatedArtists: [Artist] = []
     
-    var artistIDs: String = ""
+    var artistIDs: String = "4tZwfgrHOc3mvqYlEYSvV"
     
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadRelatedArtists()
         let notificationName = Notification.Name(rawValue: "searchDidChange")
         NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil) { (notification) in
             if let userInfo = notification.userInfo as? [String: String] {
@@ -34,15 +35,11 @@ class BrowseCollectionViewController: UICollectionViewController, SearchDelegate
         self.collectionView?.reloadData()
 
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        code
+
+//    func searchDidChange(artistID: String) {
+//        self.artistIDs = artistID
+//        print(artistIDs)
 //    }
-    
-    func searchDidChange(artistID: String) {
-        self.artistIDs = artistID
-        print(artistIDs)
-    }
-//      var relatedArtists = "https://api.spotify.com/v1/artists/\(artistID)/related-artists"
     
        func loadRelatedArtists (){
         print(artistIDs)
@@ -92,10 +89,11 @@ class BrowseCollectionViewController: UICollectionViewController, SearchDelegate
         return cell
     }
     
+    /*
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         <#code#>
     }
-    
+    */
     // MARK: UICollectionViewDelegate
     
     /*
