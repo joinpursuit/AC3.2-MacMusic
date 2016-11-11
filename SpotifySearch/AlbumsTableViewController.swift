@@ -22,9 +22,13 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     
     var iTunesArray: [iTunes] = []
     
+    var videosArray: [Video] = []
+    
     var trackURL = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65&q_track=Complicated&q_artist=Avril&page_size=10"
     
     var iTunesURL = "https://itunes.apple.com/search?country=US&media=music&entity=musicTrack&term=adele%20hello"
+    
+    var videoURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=Adele+Hello&type=video&key=AIzaSyAtF36hcFVY9F8ZetEbSLvXVzeu1RtJzD8"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +70,16 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
 //                print("**************")
                 //dump(validiTunes)
             }
+        
+            APIRequestManager.manager.getData(endPoint: self.videoURL, callback: { (data: Data?) in
+                if let validData = data{
+                    dump(validData)
+                    guard let validVideos = Video.getVideo(from: validData) else {return}
+                    self.videosArray = validVideos
+                    dump(self.videosArray)
+                }
+        })
+        
         }
     }
     
@@ -91,8 +105,6 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
                 }
             }
         }
-        
-        
     }
     // MARK: - Table view data source
     
@@ -131,6 +143,4 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
     }
-    
-    
 }
