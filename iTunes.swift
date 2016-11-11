@@ -28,16 +28,23 @@ enum iTunesModelParseError: Error {
 
 class iTunes {
     //https://itunes.apple.com/search?country=US&media=music&entity=musicTrack&term=gem ainy
+    //need collectionName and albumID
     var artistName: String
     var trackName: String
+    var collectionName: String
+    var collectionId: Int
     var trackViewUrl: String
     init (
           artistName: String,
           trackName: String,
-          trackViewUrl: String){
+          trackViewUrl: String,
+          collectionId: Int,
+          collectionName: String){
         self.artistName = artistName
         self.trackName = trackName
         self.trackViewUrl = trackViewUrl
+        self.collectionId = collectionId
+        self.collectionName = collectionName
     }
     
     static func getiTunes (from data: Data) -> [iTunes]? {
@@ -61,7 +68,14 @@ class iTunes {
                 guard let trackViewUrl = result["trackViewUrl"] as? String else {
                     throw iTunesModelParseError.trackViewUrl
                 }
-                let i = iTunes(artistName: artistName, trackName: trackName, trackViewUrl: trackViewUrl)
+                guard let collectionName = result["collectionName"] as? String else {
+                    throw iTunesModelParseError.collectionName
+                }
+                guard let collectionId = result["collectionId"] as? Int else {
+                    throw iTunesModelParseError.collectionId
+                }
+                
+                let i = iTunes(artistName: artistName, trackName: trackName, trackViewUrl: trackViewUrl, collectionId: collectionId, collectionName: collectionName)
                 iTunesToReturn?.append(i)
             })
             //dump(iTunesToReturn)
