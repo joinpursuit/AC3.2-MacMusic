@@ -8,20 +8,6 @@
 
 import UIKit
 
-class Favorites {
-    let songName: String
-    let songID: String
-    let songLyricsID: String
-    let artistName: String
-    
-    init(songName: String, songID: String, songLyricsID: String, artistName: String) {
-        self.songName = songName
-        self.songID = songID
-        self.songLyricsID = songLyricsID
-        self.artistName = artistName
-    }
-    
-}
 
 class FavoritesTableViewController: UITableViewController {
     
