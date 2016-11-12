@@ -149,20 +149,41 @@ class TrackViewController: UIViewController {
         } else {
             userDefaults.set([favoriteSong], forKey: "favoriteSongs")
         }
-        favButtonPressedCount = 0
+        favButtonPressedCount = 1
     }
     
     func removeFromFavorites() {
-        
+        let userDefaults = UserDefaults.standard
+
+        if var favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
+            for (index,song) in favoriteSongs.enumerated() {
+                if song["track_id"] == trackSelected.trackID {
+                    favoriteSongs.remove(at: index)
+                    userDefaults.set(favoriteSongs, forKey: "favoriteSongs")
+                    favButtonPressedCount = 0
+                }
+            }
+        }
     }
     
     
     @IBAction func favoriteSongPressed(_ sender: UIButton) {
-       
+        let userDefaults = UserDefaults.standard
+        
+        if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
+            for song in favoriteSongs {
+                if song["track_id"] == trackSelected.trackID {
+                    favButtonPressedCount = 1
+                }
+            }
+        }
+        
+        
         if favButtonPressedCount == 0 {
             addToFavorites()
             favoritesButton.setBackgroundImage(UIImage(named: "minus-5-512"), for: UIControlState.normal)
         } else {
+            removeFromFavorites()
             favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
         }
         
