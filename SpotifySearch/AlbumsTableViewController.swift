@@ -8,10 +8,14 @@
 
 import UIKit
 
+
+
 class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
-    
-    
+        
+
     internal var album: [Album] = []
+    
+    var artistName = ""
     
     var trackArray: [Track] = []
     
@@ -30,10 +34,38 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
         
         loadData()
         createSearchBar()
+        
+        let notificationArtist = Notification.Name(rawValue: "searchForArtist")
+        NotificationCenter.default.addObserver(forName: notificationArtist, object: nil, queue: nil) { (notification) in
+            if let userInfo = notification.userInfo as? [String: String] {
+                if let name = userInfo["searchArtist"] {
+                    self.artistName = name
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                    }
+                }
+                
+            }
+    
+
         self.navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.barTintColor = UIColor(red: 132.0 / 255.0, green: 189.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let searchArtist = self.artistName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+            
+            APIRequestManager.manager.getAlbumsUsingAPI(artist: searchArtist) { (data: Data?) in
+                if let unwrappedReturnedAlbumData = Album.albums(from: data!) {
+                    self.album = unwrappedReturnedAlbumData
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+        }
     }
     
     func loadData() {
@@ -87,7 +119,7 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "searchDidChange") , object: nil, userInfo: ["searchTerm":"\(self.album[0].albumID)"])
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "searchDidChange") , object: nil, userInfo: ["searchTerm":"\(self.album[0].artistID)"])
                 }
             }
         }
