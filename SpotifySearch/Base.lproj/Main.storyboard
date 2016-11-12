@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eby-N2-gKL">
+
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eby-N2-gKL">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -417,7 +421,7 @@
                                     <constraint firstAttribute="height" constant="30" id="d09-ve-Iyi"/>
                                     <constraint firstAttribute="width" constant="32" id="d0V-wZ-Ygf"/>
                                 </constraints>
-                                <state key="normal" title="Fave"/>
+                                <state key="normal" backgroundImage="plus-circle-outline"/>
                                 <connections>
                                     <action selector="favoriteSongPressed:" destination="mTW-aC-Qy2" eventType="touchUpInside" id="0mg-Gb-Pan"/>
                                 </connections>
@@ -469,6 +473,7 @@
                     </view>
                     <connections>
                         <outlet property="atistNameLabel" destination="c2S-Kg-KWH" id="1tI-1S-W9P"/>
+                        <outlet property="favoritesButton" destination="kkQ-MT-B36" id="MH6-G3-m8k"/>
                         <outlet property="iTunesButton" destination="DNQ-bO-YLL" id="1Aj-NN-ELZ"/>
                         <outlet property="lyricsTextView" destination="DhY-id-HyL" id="aqB-2u-rSW"/>
                         <outlet property="playPauseButtonOutlet" destination="thJ-dm-Uvp" id="TbK-pu-bp7"/>
@@ -563,6 +568,7 @@
     <resources>
         <image name="filter_empty" width="24" height="24"/>
         <image name="play_button" width="2265" height="2257"/>
+        <image name="plus-circle-outline" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1YO-N6-AEv"/>

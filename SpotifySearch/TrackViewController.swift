@@ -11,6 +11,7 @@ import AVFoundation
 
 class TrackViewController: UIViewController {
     
+    @IBOutlet weak var favoritesButton: UIButton!
     @IBOutlet weak var trackImageView: UIImageView!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var atistNameLabel: UILabel!
@@ -18,6 +19,8 @@ class TrackViewController: UIViewController {
     @IBOutlet weak var iTunesButton: UIButton!
     @IBOutlet weak var youTubeButton: UIButton!
     @IBOutlet weak var socialButton: UIButton!
+    
+    var favButtonPressedCount = 0
     
     var trackSelected: AlbumTracks!
     var albumImg: String!
@@ -83,12 +86,12 @@ class TrackViewController: UIViewController {
         if player?.rate == 0
         {
             player!.play()
-            playPauseButtonOutlet.setBackgroundImage(UIImage(named: "play_button"), for: UIControlState.normal)
+            playPauseButtonOutlet.setBackgroundImage(UIImage(named: "pause_button"), for: UIControlState.normal)
             playPauseButtonOutlet.alpha = 0.50
             
         } else {
             player!.pause()
-            playPauseButtonOutlet.setBackgroundImage(UIImage(named: "pause_button"), for: UIControlState.normal)
+            playPauseButtonOutlet.setBackgroundImage(UIImage(named: "play_button"), for: UIControlState.normal)
             playPauseButtonOutlet.alpha = 0.50
             
         }
@@ -146,12 +149,23 @@ class TrackViewController: UIViewController {
         } else {
             userDefaults.set([favoriteSong], forKey: "favoriteSongs")
         }
+        favButtonPressedCount = 0
+    }
+    
+    func removeFromFavorites() {
         
     }
     
     
     @IBAction func favoriteSongPressed(_ sender: UIButton) {
-        addToFavorites()
+       
+        if favButtonPressedCount == 0 {
+            addToFavorites()
+            favoritesButton.setBackgroundImage(UIImage(named: "minus-5-512"), for: UIControlState.normal)
+        } else {
+            favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
+        }
+        
     }
     
     @IBAction func iTunesButtonPressed(_ sender: UIButton) {
