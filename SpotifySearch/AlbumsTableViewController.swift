@@ -56,8 +56,7 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let searchArtist = self.artistName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-            
+            let searchArtist = self.artistName            
             APIRequestManager.manager.getAlbumsUsingAPI(artist: searchArtist) { (data: Data?) in
                 if let unwrappedReturnedAlbumData = Album.albums(from: data!) {
                     self.album = unwrappedReturnedAlbumData
