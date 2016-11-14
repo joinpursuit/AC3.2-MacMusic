@@ -93,11 +93,13 @@ class BrowseCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
-        let selectedArtist = self.relatedArtists[indexPath.row]
-        tabBarController?.selectedIndex = 1
-        print(selectedArtist.artistName)
         
         DispatchQueue.main.async {
+        let selectedArtist = self.relatedArtists[indexPath.row]
+        self.tabBarController?.selectedIndex = 1
+        print(selectedArtist.artistName)
+        
+      
         NotificationCenter.default.post(name: Notification.Name(rawValue: "searchForArtist") , object: nil, userInfo: ["searchArtist": selectedArtist.artistName])
            
         }

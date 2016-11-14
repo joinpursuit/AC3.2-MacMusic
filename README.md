@@ -11,7 +11,7 @@ Spotify
 In order to get these APIs, we went through multiple websites
 We don't want to do the same ideas as others
 
-- [Express Ideas Throug Communication]
+- [Express Ideas Through Communication]
 
 What's our original design
     Replacing the filter with favorite
