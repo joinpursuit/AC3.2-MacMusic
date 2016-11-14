@@ -32,20 +32,12 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadData()
         createSearchBar()
+        makeSearch()
         
         let notificationArtist = Notification.Name(rawValue: "searchForArtist")
         NotificationCenter.default.addObserver(forName: notificationArtist, object: nil, queue: nil) { (notification) in
-            if let userInfo = notification.userInfo as? [String: String] {
-                if let name = userInfo["searchArtist"] {
-                    self.artistName = name
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                    }
-                }
-                
+                self.makeSearch()            
             }
     
 
@@ -55,20 +47,9 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-            let searchArtist = self.artistName            
-            APIRequestManager.manager.getAlbumsUsingAPI(artist: searchArtist) { (data: Data?) in
-                if let unwrappedReturnedAlbumData = Album.albums(from: data!) {
-                    self.album = unwrappedReturnedAlbumData
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
-        }
-    }
-    
-    func loadData() {
-        APIRequestManager.manager.getAlbumsUsingAPI() { (data: Data?) in
+   
+    func makeSearch () {
+        APIRequestManager.manager.getAlbumsUsingAPI(artist: self.artistName) { (data: Data?) in
             if let unwrappedReturnedAlbumData = Album.albums(from: data!) {
                 self.album = unwrappedReturnedAlbumData
                 
@@ -77,27 +58,8 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
                 }
             }
         }
-        
-        
-        
-        APIRequestManager.manager.getData(endPoint: iTunesURL) { (data: Data?) in
-            if let validData = data {
-                guard let validiTunes = iTunes.getiTunes(from: validData) else {return}
-                self.iTunesArray = validiTunes
-                dump(self.iTunesArray)
-            }
-            
-            APIRequestManager.manager.getData(endPoint: self.videoURL, callback: { (data: Data?) in
-                if let validData = data{
-                    dump(validData)
-                    guard let validVideos = Video.getVideo(from: validData) else {return}
-                    self.videosArray = validVideos
-                    dump(self.videosArray)
-                }
-            })
-            
-        }
     }
+    
     
     func createSearchBar() {
         let searchbar = UISearchBar()
