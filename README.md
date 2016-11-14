@@ -37,3 +37,14 @@ Tips to use API
         After this we were able to get the data and implement it in our project.
 2. Be prepared for challenges
     When using the Apple's API, the data was parsed successfully. Unfortunately, the link was not connected correctly when opened on the phone. It opened the music app without opening the specific album. However, the link opened expectedly in a browser on the phone. This was strange, but instead of spending more time on this issue. I worked on another API to connect the song to a YouTube link. 
+
+
+## Cristopher 
+
+### NSUserDefaults
+
+I worked on NSUserDefaults, appending NSUserDefaults turned out to be a bit of a challenge because I encountered a problem that I hadn't seen before nor thought about. I spoke to Jason and Louis, both TAs, who helped me figure out the problem I was having. The problem was that everytime I added a song's data to NSUSerDefaults I would replace the songs I had with the new song I added. What I should of been doing is assigning the UserDefaults to a variable, appending it and then setting the appended variable to USerDefaults. This was a simple fix, but one that I will remember to do and think about in other scenarious that are the same or similar.
+
+### Changing image when selected
+
+Something interesting I also learned was changing an image when it has been selected. This too was simple to do, but something that I had no idea how to do prior to this project. Once I learned how to do it, I used the same method to change other buttons. 

@@ -63,7 +63,7 @@ class TrackViewController: UIViewController {
         loadTrackId()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         let userDefaults = UserDefaults.standard
         
         if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
@@ -72,6 +72,7 @@ class TrackViewController: UIViewController {
                     favButtonPressedCount = 1
                 }
             }
+            
         }
         
         
