@@ -213,7 +213,11 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wmI-KM-ExK" id="9tH-9m-YCI">
+<<<<<<< HEAD
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="65"/>
+=======
                                             <frame key="frameInset" width="343" height="64"/>
+>>>>>>> 7531fa74f413dd9db483f2e777fc0be8ce8c2fcb
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
