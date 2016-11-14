@@ -64,8 +64,9 @@ class TrackViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let userDefaults = UserDefaults.standard
         
+        let userDefaults = UserDefaults.standard
+        userDefaults.didChangeValue(forKey: "favoriteSongs")
         if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
             for song in favoriteSongs {
                 if song["track_id"] == trackSelected.trackID {
