@@ -17,8 +17,8 @@ What design I was thinking
 Use tabs instead
 How we were about to decide our product
 Voting
-How I use language to persuade others to take my idea, instead of democracy.
-I showed my teammates my design and tried to persuade them
+How I use language to persuade others to take my ideas.
+I showed my teammates my design and tried to persuade them.
 
 -[API Endpoints] 
 What is API?
