@@ -8,26 +8,48 @@
 
 import UIKit
 
+
+
 class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
-    
-    
+        
+
     internal var album: [Album] = []
     
+    var artistName = ""
+    
     var trackArray: [Track] = []
-    var track = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65&q_track=Complicated&q_artist=Avril&page_size=10"
+    
+    var iTunesArray: [iTunes] = []
+    
+    var videosArray: [Video] = []
+    
+    var trackURL = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65&q_track=Complicated&q_artist=Avril&page_size=10"
+    
+    var iTunesURL = "https://itunes.apple.com/search?country=US&media=music&entity=musicTrack&term=adele%20hello"
+    
+    var videoURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=Adele+Hello&type=video&key=AIzaSyAtF36hcFVY9F8ZetEbSLvXVzeu1RtJzD8"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+        
         createSearchBar()
+        makeSearch()
+        
+        let notificationArtist = Notification.Name(rawValue: "searchForArtist")
+        NotificationCenter.default.addObserver(forName: notificationArtist, object: nil, queue: nil) { (notification) in
+                self.makeSearch()            
+            }
+    
+
         self.navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.barTintColor = UIColor(red: 132.0 / 255.0, green: 189.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
     }
     
-    func loadData() {
-        APIRequestManager.manager.getAlbumsUsingAPI() { (data: Data?) in
+   
+    func makeSearch () {
+        APIRequestManager.manager.getAlbumsUsingAPI(artist: self.artistName) { (data: Data?) in
             if let unwrappedReturnedAlbumData = Album.albums(from: data!) {
                 self.album = unwrappedReturnedAlbumData
                 
@@ -36,17 +58,8 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
                 }
             }
         }
-        
-//        APIRequestManager.manager.getData(endPoint: track) { (data: Data?) in
-//            if let validData = data {
-//                guard let validTrack = Track.getTrack(from: validData) else {return}
-//                self.trackArray = validTrack
-//                dump(self.trackArray)
-//                dump(validTrack)
-//            }
-//        }
-        
     }
+    
     
     func createSearchBar() {
         let searchbar = UISearchBar()
@@ -58,19 +71,19 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     
     
     
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else {return}
         APIRequestManager.manager.getAlbumsUsingAPI(artist: searchTerm) { (data: Data?) in
             if let unwrappedReturnedAlbumData = Album.albums(from: data!) {
                 self.album = unwrappedReturnedAlbumData
-                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "searchDidChange") , object: nil, userInfo: ["searchTerm":"\(self.album[0].artistID)"])
                 }
             }
         }
-        
-        
     }
     // MARK: - Table view data source
     
@@ -109,6 +122,4 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
         }
         
     }
-    
-    
 }
