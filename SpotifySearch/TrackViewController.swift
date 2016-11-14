@@ -63,7 +63,25 @@ class TrackViewController: UIViewController {
         loadTrackId()
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+        
+        if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
+            for song in favoriteSongs {
+                if song["track_id"] == trackSelected.trackID {
+                    favButtonPressedCount = 1
+                }
+            }
+        }
+        
+        
+        if favButtonPressedCount == 0 {
+            favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
+        } else {
+            favoritesButton.setBackgroundImage(UIImage(named: "minus-5-512"), for: UIControlState.normal)
+        }
+        
+    }
     
     func playAudio() {
         
@@ -154,7 +172,7 @@ class TrackViewController: UIViewController {
     
     func removeFromFavorites() {
         let userDefaults = UserDefaults.standard
-
+        
         if var favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
             for (index,song) in favoriteSongs.enumerated() {
                 if song["track_id"] == trackSelected.trackID {

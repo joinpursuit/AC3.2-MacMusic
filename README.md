@@ -1,7 +1,14 @@
-# Lesson
-
-
 # Ana
+- [Using multiple API]
+
+Youtube
+Musixmatch
+Apple
+Spotify
+
+In order to get these APIs, we went through multiple websites
+We don't want to do the same ideas as others
+
 - [Express Ideas Throug Communication]
 
 What's our original design
@@ -17,15 +24,6 @@ I showed my teammates my design and tried to persuade them
 What is API?
 In computer programming, an application programming interface (API) is a set of subroutine definitions, protocols, and tools for building software and applications. A good API makes it easier to develop a program by providing all the building blocks, which are then put together by the programmer.
 Source: https://en.wikipedia.org/wiki/Application_programming_interface
-
-What are the APIs in The MAC Music 
-Youtube
-Musixmatch
-Apple
-Spotify
-
-In order to get these APIs, we went through multiple websites
-We don't want to do the same ideas as others
 
 Tips to use API
 1. Don't give up easily when stuck

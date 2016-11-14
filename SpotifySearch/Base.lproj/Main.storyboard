@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eby-N2-gKL">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eby-N2-gKL">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -136,7 +136,7 @@
         <scene sceneID="iRV-0s-6Y4">
             <objects>
                 <collectionViewController id="OHO-0E-dRT" customClass="BrowseCollectionViewController" customModule="SpotifySearch" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" dataMode="prototypes" id="kPW-8g-FoS">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" id="kPW-8g-FoS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -413,27 +413,28 @@
                                     <constraint firstAttribute="height" constant="30" id="d09-ve-Iyi"/>
                                     <constraint firstAttribute="width" constant="32" id="d0V-wZ-Ygf"/>
                                 </constraints>
-                                <state key="normal" title="t"/>
                                 <connections>
                                     <action selector="favoriteSongPressed:" destination="mTW-aC-Qy2" eventType="touchUpInside" id="0mg-Gb-Pan"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNQ-bO-YLL">
-                                <state key="normal" title="iTunes"/>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNQ-bO-YLL">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="AVU-8q-qty"/>
+                                    <constraint firstAttribute="width" constant="100" id="Egl-Ao-g7W"/>
+                                </constraints>
+                                <state key="normal" title="iTunes" image="itunes-vector-logo"/>
                                 <connections>
                                     <action selector="iTunesButtonPressed:" destination="mTW-aC-Qy2" eventType="touchUpInside" id="fg8-1p-Ged"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1m-MO-gAJ">
-                                <state key="normal" title="YouTube"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1m-MO-gAJ">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="8to-7K-Yxn"/>
+                                    <constraint firstAttribute="height" constant="30" id="t0e-rU-m2X"/>
+                                </constraints>
+                                <state key="normal" title="YouTube" image="YouTube-social-icon_red_48px"/>
                                 <connections>
                                     <action selector="youTubeButtonPressed:" destination="mTW-aC-Qy2" eventType="touchUpInside" id="sVO-N4-gxU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yg-Ua-66v">
-                                <state key="normal" title="Social"/>
-                                <connections>
-                                    <action selector="socialButtonPressed:" destination="mTW-aC-Qy2" eventType="touchUpInside" id="vOR-Kg-yXN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -445,10 +446,10 @@
                             <constraint firstItem="thJ-dm-Uvp" firstAttribute="centerX" secondItem="hKN-on-KpM" secondAttribute="centerX" id="KyK-nC-Xgy"/>
                             <constraint firstAttribute="leadingMargin" secondItem="svO-jz-V8x" secondAttribute="leading" id="NJS-zq-fbU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="svO-jz-V8x" secondAttribute="trailing" id="NML-ED-65f"/>
+                            <constraint firstItem="DNQ-bO-YLL" firstAttribute="centerX" secondItem="8aL-Nc-Mzc" secondAttribute="centerX" constant="-40" id="NTt-Jt-0TJ"/>
                             <constraint firstItem="DhY-id-HyL" firstAttribute="top" secondItem="g1m-MO-gAJ" secondAttribute="bottom" constant="8" id="TAL-DY-2KM"/>
                             <constraint firstItem="c2S-Kg-KWH" firstAttribute="top" secondItem="svO-jz-V8x" secondAttribute="bottom" constant="4" id="aga-nD-gYe"/>
                             <constraint firstItem="DhY-id-HyL" firstAttribute="leading" secondItem="8aL-Nc-Mzc" secondAttribute="leadingMargin" id="bFj-Z9-fri"/>
-                            <constraint firstItem="g1m-MO-gAJ" firstAttribute="leading" secondItem="DNQ-bO-YLL" secondAttribute="trailing" constant="33" id="c4Y-N6-QvK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="c2S-Kg-KWH" secondAttribute="trailing" id="gWD-uQ-uOl"/>
                             <constraint firstItem="svO-jz-V8x" firstAttribute="top" secondItem="hKN-on-KpM" secondAttribute="bottom" constant="4" id="gin-pU-un3"/>
                             <constraint firstItem="thJ-dm-Uvp" firstAttribute="centerY" secondItem="hKN-on-KpM" secondAttribute="centerY" id="hgo-cU-ndE"/>
@@ -456,10 +457,8 @@
                             <constraint firstItem="hKN-on-KpM" firstAttribute="top" secondItem="l7S-Rz-1TE" secondAttribute="bottom" constant="4" id="jyN-Am-nLo"/>
                             <constraint firstItem="g1m-MO-gAJ" firstAttribute="centerY" secondItem="DNQ-bO-YLL" secondAttribute="centerY" id="kK6-AW-YBL"/>
                             <constraint firstItem="hKN-on-KpM" firstAttribute="centerX" secondItem="8aL-Nc-Mzc" secondAttribute="centerX" id="mLB-ar-W5M"/>
-                            <constraint firstItem="g1m-MO-gAJ" firstAttribute="centerX" secondItem="8aL-Nc-Mzc" secondAttribute="centerX" id="o57-TC-udt"/>
+                            <constraint firstItem="g1m-MO-gAJ" firstAttribute="centerX" secondItem="8aL-Nc-Mzc" secondAttribute="centerX" constant="50" id="o57-TC-udt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DhY-id-HyL" secondAttribute="trailing" id="oFV-2u-juC"/>
-                            <constraint firstItem="1Yg-Ua-66v" firstAttribute="leading" secondItem="g1m-MO-gAJ" secondAttribute="trailing" constant="33" id="oUQ-lb-TAd"/>
-                            <constraint firstItem="1Yg-Ua-66v" firstAttribute="centerY" secondItem="g1m-MO-gAJ" secondAttribute="centerY" id="rK1-5q-3t5"/>
                             <constraint firstItem="kkQ-MT-B36" firstAttribute="top" secondItem="hKN-on-KpM" secondAttribute="bottom" constant="8" id="xFX-yy-k1a"/>
                         </constraints>
                     </view>
@@ -469,7 +468,6 @@
                         <outlet property="iTunesButton" destination="DNQ-bO-YLL" id="1Aj-NN-ELZ"/>
                         <outlet property="lyricsTextView" destination="DhY-id-HyL" id="aqB-2u-rSW"/>
                         <outlet property="playPauseButtonOutlet" destination="thJ-dm-Uvp" id="TbK-pu-bp7"/>
-                        <outlet property="socialButton" destination="1Yg-Ua-66v" id="fbB-Tg-jAV"/>
                         <outlet property="trackImageView" destination="hKN-on-KpM" id="RmG-Pv-HrS"/>
                         <outlet property="trackNameLabel" destination="svO-jz-V8x" id="33k-XV-1Zh"/>
                         <outlet property="youTubeButton" destination="g1m-MO-gAJ" id="3lj-fF-naJ"/>
@@ -558,10 +556,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="YouTube-social-icon_red_48px" width="48" height="34"/>
         <image name="filter_empty" width="24" height="24"/>
+        <image name="itunes-vector-logo" width="720" height="340"/>
         <image name="play_button" width="2265" height="2257"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1YO-N6-AEv"/>
+        <segue reference="Tu8-XS-3ky"/>
     </inferredMetricsTieBreakers>
 </document>
