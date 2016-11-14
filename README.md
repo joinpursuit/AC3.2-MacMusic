@@ -33,9 +33,9 @@ https://developer.musixmatch.com/documentation
 We turned into stack overflow for more information
 http://stackoverflow.com/questions/17165228/how-to-get-lyrics-from-musixmatch
 After this we were able to get the data and implement it in our project.
+
 2. Be prepared for challenges
-<<<<<<< HEAD
-    When using the Apple's API, the data was parsed successfully. Unfortunately, the link was not connected correctly when opened on the phone. It opened the music app without opening the specific album. However, the link opened expectedly in a browser on the phone. This was strange, but instead of spending more time on this issue. I worked on another API to connect the song to a YouTube link. 
+When using the Apple's API, the data was parsed successfully. Unfortunately, the link was not connected correctly when opened on the phone. It opened the music app without opening the specific album. However, the link opened expectedly in a browser on the phone. This was strange, but instead of spending more time on this issue. I worked on another API to connect the song to a YouTube link. 
 
 
 ## Cristopher 
@@ -47,6 +47,5 @@ I worked on NSUserDefaults, appending NSUserDefaults turned out to be a bit of a
 ### Changing image when selected
 
 Something interesting I also learned was changing an image when it has been selected. This too was simple to do, but something that I had no idea how to do prior to this project. Once I learned how to do it, I used the same method to change other buttons. 
-=======
+
 When using the Apple's API, the data was parsed successfully. Unfortunately, the link was not connected correctly when opened on the phone. It opened the music app without opening the specific album. However, the link opened expectedly in a browser on the phone. This was strange, but instead of spending more time on this issue. I worked on another API to connect the song to a YouTube link. 
->>>>>>> 7531fa74f413dd9db483f2e777fc0be8ce8c2fcb
