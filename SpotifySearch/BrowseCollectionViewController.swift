@@ -21,12 +21,12 @@ class BrowseCollectionViewController: UICollectionViewController {
 
         loadRelatedArtists()
         
+        DispatchQueue.main.async {
         let notificationName = Notification.Name(rawValue: "searchDidChange")
         NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil) { (notification) in
             if let userInfo = notification.userInfo as? [String: String] {
                 if let id = userInfo["searchTerm"] {
                     self.artistIDs = id
-                    DispatchQueue.main.async {
                         self.collectionView?.reloadData()
                     }
                 }
@@ -86,7 +86,7 @@ class BrowseCollectionViewController: UICollectionViewController {
         
         cell.artistName.text = theArtist.artistName
         cell.artistImage.downloadImage(urlString: theArtist.image)
-        
+        //cell.backgroundColor = UIColor.blue
         return cell
     }
     
@@ -95,10 +95,13 @@ class BrowseCollectionViewController: UICollectionViewController {
        
         let selectedArtist = self.relatedArtists[indexPath.row]
         tabBarController?.selectedIndex = 1
+        print(selectedArtist.artistName)
         
         DispatchQueue.main.async {
         NotificationCenter.default.post(name: Notification.Name(rawValue: "searchForArtist") , object: nil, userInfo: ["searchArtist": selectedArtist.artistName])
+           
         }
+        
     }
     
 
