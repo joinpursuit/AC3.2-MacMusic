@@ -49,3 +49,4 @@ I worked on NSUserDefaults, appending NSUserDefaults turned out to be a bit of a
 Something interesting I also learned was changing an image when it has been selected. This too was simple to do, but something that I had no idea how to do prior to this project. Once I learned how to do it, I used the same method to change other buttons. 
 
 When using the Apple's API, the data was parsed successfully. Unfortunately, the link was not connected correctly when opened on the phone. It opened the music app without opening the specific album. However, the link opened expectedly in a browser on the phone. This was strange, but instead of spending more time on this issue. I worked on another API to connect the song to a YouTube link. 
+

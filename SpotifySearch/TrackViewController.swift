@@ -63,26 +63,26 @@ class TrackViewController: UIViewController {
         loadTrackId()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        let userDefaults = UserDefaults.standard
-        userDefaults.didChangeValue(forKey: "favoriteSongs")
-        if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
-            for song in favoriteSongs {
-                if song["track_id"] == trackSelected.trackID {
-                    favButtonPressedCount = 1
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            
+            let userDefaults = UserDefaults.standard
+            if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
+                for song in favoriteSongs {
+                    if song["track_id"] == self.trackSelected.trackID {
+                        self.favButtonPressedCount = 1
+                    }
                 }
+                
             }
             
+            
+            if self.favButtonPressedCount == 0 {
+                self.favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
+            } else {
+                self.favoritesButton.setBackgroundImage(UIImage(named: "minus-5-512"), for: UIControlState.normal)
+            }
         }
-        
-        
-        if favButtonPressedCount == 0 {
-            favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
-        } else {
-            favoritesButton.setBackgroundImage(UIImage(named: "minus-5-512"), for: UIControlState.normal)
-        }
-        
     }
     
     func playAudio() {
