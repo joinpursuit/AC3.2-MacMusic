@@ -8,6 +8,9 @@
 
 import UIKit
 
+//NSCache is like a memory
+//SDwebimage
+
 let cacheImage = NSCache<NSString, UIImage>()
 extension UIImageView {
     func downloadImage(urlString: String) {

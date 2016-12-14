@@ -60,7 +60,6 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    
     func createSearchBar() {
         let searchbar = UISearchBar()
         searchbar.showsCancelButton = false
@@ -68,9 +67,6 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
         searchbar.delegate = self
         self.navigationItem.titleView = searchbar
     }
-    
-    
-    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchTerm = searchBar.text else {return}
@@ -85,15 +81,13 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
     }
-    // MARK: - Table view data source
     
+    // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return album.count
     }
     
@@ -113,7 +107,6 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "SegueFromAlbumToTracks" {
             if let dest = segue.destination as? AlbumTracksViewController,
                 let indexPath = tableView.indexPathForSelectedRow {

@@ -32,7 +32,6 @@ class APIRequestManager {
             }.resume()
     }
     
-    
     func getTracksUsingAPI(trackID: String, completion:@escaping ((Data?)->Void)) {
         
         let APIString = "https://api.spotify.com/v1/albums/\(trackID)/tracks"

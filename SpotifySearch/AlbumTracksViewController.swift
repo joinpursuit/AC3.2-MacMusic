@@ -12,7 +12,6 @@ import UIKit
 class AlbumTracksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var AlbumImageView: UIImageView!
-    
     @IBOutlet weak var trackTableView: UITableView!
     
     var albumSelected: Album!
@@ -21,7 +20,6 @@ class AlbumTracksViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         trackTableView.delegate = self
         trackTableView.dataSource = self
         
@@ -69,7 +67,5 @@ class AlbumTracksViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-    
-    
     
 }

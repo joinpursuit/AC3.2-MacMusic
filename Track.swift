@@ -219,7 +219,6 @@ class Track {
                 trackToReturn?.append(t)
                 
             }
-            //dump(jsonData)
         }
         catch{
             print("there's error")
