@@ -36,21 +36,15 @@ internal struct Album {
                     else {throw AlbumModelParseError.name}
                 
                 guard let albumID = albumObject["id"] as? String else {throw AlbumModelParseError.ID}
-                
-                
                 guard let artistInfo = albumObject["artists"] as? [[String:Any]] else {return}
                 guard let artistID = artistInfo[0]["id"] as? String else {return}
-                
-                
-                
                 guard let albumImages = albumObject["images"] as? [Any]
                 else {throw AlbumModelParseError.smallImageURL}
               
 //                guard let albumImages = albumObject["images"] as? [[String: Any]]
 //            let albumSmallImageURL = albumImages.count == 0 ? "" : albumImages[2]["url"] as! String
 //            let albumLargeImageURL = albumImages.count == 0 ? "" : albumImages[0]["url"] as! String
-//
-          
+
                 guard albumImages.count > 0 else {return}
                 let albumSmallImageDict = albumImages[2] as? [String : Any] ?? ["" : ""]
                 let albumSmallImageURL = albumSmallImageDict["url"] as? String ?? ""

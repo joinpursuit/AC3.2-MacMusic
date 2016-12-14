@@ -11,11 +11,8 @@ import UIKit
 class BrowseCollectionViewController: UICollectionViewController {
     
     var relatedArtists: [Artist] = []
-    
     var artistIDs: String = "3WGpXCj9YhhfX11TToZcXP"
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,14 +29,9 @@ class BrowseCollectionViewController: UICollectionViewController {
         }
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
       self.loadRelatedArtists()
-        
     }
-    
-
-
     
     func loadRelatedArtists (){
         APIRequestManager.manager.getData(endPoint: "https://api.spotify.com/v1/artists/\(artistIDs)/related-artists") { (data: Data?) in
@@ -53,16 +45,11 @@ class BrowseCollectionViewController: UICollectionViewController {
         }
     }
     
-    
-  
-    
     // MARK: UICollectionViewDataSource
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
@@ -79,25 +66,18 @@ class BrowseCollectionViewController: UICollectionViewController {
         //cell.backgroundColor = UIColor.blue
         return cell
     }
-    
-    
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
-        
         DispatchQueue.main.async {
         let selectedArtist = self.relatedArtists[indexPath.row]
         self.tabBarController?.selectedIndex = 1
         print(selectedArtist.artistName)
-        
             if let nc = self.tabBarController?.viewControllers?[1] as? UINavigationController,
                 let atvc = nc.viewControllers[0] as? AlbumsTableViewController {
                 atvc.artistName = selectedArtist.artistName
             }
             NotificationCenter.default.post(name: Notification.Name(rawValue: "searchForArtist") , object: nil)
-            
         }
-        
     }
-   
-    
 }

@@ -45,9 +45,6 @@ class AlbumTracks {
         
         
         self.init(singerName: artistName, trackName: trackName, trackID: id, trackNumber: trackNumber, trackPreviewURL: trackPreviewURL, trackLyrics: trackLyrics, albumImg: trackImg)
-        
-        
-        
     }
     
     static func tracks(from data: Data) -> [AlbumTracks]? {

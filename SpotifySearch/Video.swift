@@ -37,36 +37,27 @@ class Video {
         
         do{
             let jsonData : Any = try JSONSerialization.jsonObject(with: data, options: [])
-            
             guard let dictionary = jsonData as? [String:Any] else {
                 throw VideoModelParseError.dictionary
             }
-            
             guard let items = dictionary["items"] as? [[String: Any]] else {
                 throw VideoModelParseError.items
             }
-            
             try items.forEach({ (item) in
                 guard let id = item["id"] as? [String : Any] else {
                     throw VideoModelParseError.id
                 }
-                
                 guard let videoId = id["videoId"] as? String else {
                     throw VideoModelParseError.videoId
                 }
-                
                 guard let snippet = item["snippet"] as? [String: Any] else {
                     throw VideoModelParseError.snippet
                 }
-                
                 guard let title = snippet["title"] as? String,
                     let description = snippet["description"] as? String,
                     let channelTitle = snippet["channelTitle"] as? String else {
                     throw VideoModelParseError.title
-//                    throw VideoModelParseError.description
-//                    throw VideoModelParseError.channelTitle
                 }
-                
                 let v = Video(videoId: videoId, title: title, description: description, channelTitle: channelTitle)
                 videosToReturn.append(v)
                 
@@ -76,10 +67,8 @@ class Video {
         catch {
             print(error)
         }
-        
         return videosToReturn
     }
-    
 }
 /*
  {

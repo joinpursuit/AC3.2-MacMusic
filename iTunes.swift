@@ -78,8 +78,6 @@ class iTunes {
                 let i = iTunes(artistName: artistName, trackName: trackName, trackViewUrl: trackViewUrl, collectionId: collectionId, collectionName: collectionName)
                 iTunesToReturn?.append(i)
             })
-            //dump(iTunesToReturn)
-            //dump(jsonData)
         }
         catch iTunesModelParseError.result {
             print("there's error in result")

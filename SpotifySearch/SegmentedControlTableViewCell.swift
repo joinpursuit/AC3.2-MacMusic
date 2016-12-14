@@ -28,11 +28,9 @@ class SegmentedControlTableViewCell: UITableViewCell {
         }
     }
     
-    
     @IBAction func didSelectType(_ sender: UISegmentedControl) {
         self.delegate?.didSelectMusicType(ofType: indexToMusictype(index: sender.selectedSegmentIndex))
     }
-    
     
     func typeToValues(ofType: albumType) -> Int {
         switch ofType {
@@ -46,7 +44,5 @@ class SegmentedControlTableViewCell: UITableViewCell {
     func setMusicTypes(to: albumType) {
         MusicType.selectedSegmentIndex = typeToValues(ofType: to)
     }
-    
-    
 
 }

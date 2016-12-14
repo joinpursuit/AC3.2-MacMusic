@@ -16,6 +16,4 @@ class BrowseCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         self.artistImage.image = nil
     }
-    
-
 }

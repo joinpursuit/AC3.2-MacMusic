@@ -38,7 +38,6 @@ class TrackViewController: UIViewController {
     var trackBaseURL = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65"
     var trackURL = ""
     
-    
     var lyricsBaseURL = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=c4c49544dec7305a9c6a01af96bfdcb3&track_id="
     var lyricsURL = ""
     
@@ -59,7 +58,6 @@ class TrackViewController: UIViewController {
         atistNameLabel.text = trackSelected.singerName
         
         playAudio()
-        
         loadTrackId()
     }
     
@@ -73,9 +71,7 @@ class TrackViewController: UIViewController {
                         self.favButtonPressedCount = 1
                     }
                 }
-                
             }
-            
             
             if self.favButtonPressedCount == 0 {
                 self.favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
@@ -86,7 +82,6 @@ class TrackViewController: UIViewController {
     }
     
     func playAudio() {
-        
         guard let trackPrev = URL(string: trackSelected.trackPreviewURL) else {return}
         print(trackPrev)
         playerItem = AVPlayerItem(url: trackPrev)
@@ -95,12 +90,9 @@ class TrackViewController: UIViewController {
         self.view.layer.addSublayer(playerLayer)
     }
     
-    
-    
-    // www.swiftdeveloperblog.com/play-music-mp3-file-example-in-swift/
+    //www.swiftdeveloperblog.com/play-music-mp3-file-example-in-swift/
     //Above link is a tutorial for playing an mp3 file --
     @IBOutlet weak var playPauseButtonOutlet: UIButton!
-    
     @IBAction func playButtonTapped(_ sender: UIButton) {
         
         if player?.rate == 0
@@ -113,7 +105,6 @@ class TrackViewController: UIViewController {
             player!.pause()
             playPauseButtonOutlet.setBackgroundImage(UIImage(named: "play_button"), for: UIControlState.normal)
             playPauseButtonOutlet.alpha = 0.50
-            
         }
     }
     
@@ -128,7 +119,6 @@ class TrackViewController: UIViewController {
                 guard let validTrack = Track.getTrack(from: validData) else {return}
                 self.trackArray = validTrack
                 dump(self.trackArray)
-                //dump(validTrack)
                 DispatchQueue.main.async {
                     guard self.trackArray.count > 0 else {return}
                     self.trackID = self.trackArray[0].track_id
@@ -140,15 +130,12 @@ class TrackViewController: UIViewController {
                                 guard self.lyricArray.count > 0 else {return}
                                 self.lyricsTextView.text = self.lyricArray[0].lyricsBody
                             }
-                            
                         }
                     })
                 }
-                
             }
         }
     }
-    
     
     func addToFavorites() {
         let userDefaults = UserDefaults.standard
@@ -161,7 +148,6 @@ class TrackViewController: UIViewController {
         favoriteSong.updateValue(String(trackSelected.trackNumber), forKey: "track_number")
         favoriteSong.updateValue(trackSelected.trackPreviewURL, forKey: "track_preview_URL")
         favoriteSong.updateValue(albumImg, forKey: "album_Img")
-        
         
         if var favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
             favoriteSongs.append(favoriteSong)
@@ -186,7 +172,6 @@ class TrackViewController: UIViewController {
         }
     }
     
-    
     @IBAction func favoriteSongPressed(_ sender: UIButton) {
         let userDefaults = UserDefaults.standard
         
@@ -197,7 +182,6 @@ class TrackViewController: UIViewController {
                 }
             }
         }
-        
         
         if favButtonPressedCount == 0 {
             addToFavorites()
@@ -258,11 +242,8 @@ class TrackViewController: UIViewController {
                 }
             }
         }
-        
         //https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=nicki+minaj+anaconda&type=video&key=AIzaSyAtF36hcFVY9F8ZetEbSLvXVzeu1RtJzD8
-        
         //https://www.youtube.com/watch?v=LDZX4ooRsWs
-        
     }
     
     
