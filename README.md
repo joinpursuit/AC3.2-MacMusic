@@ -51,6 +51,8 @@ Something interesting I also learned was changing an image when it has been sele
 
 When using the Apple's API, the data was parsed successfully. Unfortunately, the link was not connected correctly when opened on the phone. It opened the music app without opening the specific album. However, the link opened expectedly in a browser on the phone. This was strange, but instead of spending more time on this issue. I worked on another API to connect the song to a YouTube link. 
 
+
+
 ## Marcel
 
 We came to a bump on the road when we wanted the artist you search for to effect the ‘browse’ tab. We first attempted to use protocols and delegates but found out that it could not be used because the way our app is set up.  So Jay the TA introduced NotificationCenter. Notification Center is a communication tool internal to your app. This tool provides a way for one instance of a class/struct to notify one or more other class/struct instances about something.  The receiving class/structs then can take appropriate actions upon receiving that information. The common way to think of NoticationCenter is as a radio and the classes/structs that are listening for the information are observers.  Although we were able to pass the data using NotificationCenter, Chris put up an article that touched on good and bad habits when it comes to communicating between viewcontrollers. It brought up that using notification centers is bad practice because it makes it hard for bug testing.

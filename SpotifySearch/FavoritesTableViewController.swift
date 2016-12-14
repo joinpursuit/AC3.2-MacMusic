@@ -54,6 +54,7 @@ class FavoritesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteSongCellID", for: indexPath) as! FavoritesTableViewCell
         let faveSong = favoritesArray[indexPath.row]
         cell.favoriteTrackLabel.text = faveSong.trackName
+        cell.favoritesTrackImageView.downloadImage(urlString: faveSong.albumImg)
         return cell
     }
     
