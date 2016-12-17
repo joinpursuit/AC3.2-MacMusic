@@ -47,12 +47,10 @@ class BrowseCollectionViewController: UICollectionViewController {
     
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return self.relatedArtists.count
     }
     
@@ -72,7 +70,6 @@ class BrowseCollectionViewController: UICollectionViewController {
         DispatchQueue.main.async {
         let selectedArtist = self.relatedArtists[indexPath.row]
         self.tabBarController?.selectedIndex = 1
-        print(selectedArtist.artistName)
             if let nc = self.tabBarController?.viewControllers?[1] as? UINavigationController,
                 let atvc = nc.viewControllers[0] as? AlbumsTableViewController {
                 atvc.artistName = selectedArtist.artistName

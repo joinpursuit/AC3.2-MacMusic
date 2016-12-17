@@ -113,6 +113,5 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
                 dest.albumSelected = album[indexPath.row]
             }
         }
-        
     }
 }

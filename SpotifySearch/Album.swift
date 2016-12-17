@@ -20,7 +20,6 @@ internal struct Album {
     internal let artistID: String
     
     static func albums(from data: Data) -> [Album]? {
-        
         do {
             let albumJSONData: Any = try JSONSerialization.jsonObject(with: data, options: [])
             
@@ -63,7 +62,6 @@ internal struct Album {
         }
         return nil
     }
-    
 }
 //
 //{

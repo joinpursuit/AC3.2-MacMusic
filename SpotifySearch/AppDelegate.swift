@@ -13,9 +13,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        /*
+        if let spotifyLogin = UserDefaults.standard.value(forKey: "spotifyLoginInfo") as? [String:String] {
+            if let clientID = spotifyLogin["client_id"],
+                let clientSecret = spotifyLogin["client_secret"],
+                let accessToken = spotifyLogin["access_token"] {
+                SpotifyOAuthManager.configure(clientID: clientID, clientSecret: clientSecret, accessToken: accessToken)
+                print(SpotifyOAuthManager.configure(clientID: clientID, clientSecret: clientSecret, accessToken: accessToken))
+            }
+            return true
+        }
+         */
+        let clientID = ""
+        let clientSecret = ""
+        let redirectURL =  "macmusic://auth.url"
+        
+        SpotifyOAuthManager.configure(clientID: clientID, clientSecret: clientSecret)
+        do {
+            //get user and get repo while nothing else
+            //request specific information
+            try SpotifyOAuthManager.shared.requestAuthorization(scopes: [.user_library_read, .user_library_modify])
+        } catch {
+            print("Error: \(error)")
+        }
+        return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let sendingApp = options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String {
+            if sendingApp == "com.apple.mobilesafari"{ //used to be "Safari.app"
+                SpotifyOAuthManager.shared.requestAuthToken(url: url)
+            }
+        }
         return true
     }
 
