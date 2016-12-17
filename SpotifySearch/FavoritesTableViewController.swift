@@ -8,13 +8,24 @@
 
 import UIKit
 
-
 class FavoritesTableViewController: UITableViewController {
     
     var favoritesArray = [AlbumTracks]()
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.registerForNotifications()
+        DispatchQueue.main.async {
+            SpotifyOAuthManager.shared.getTracks(complete: { (tracksArr: [AlbumTracks]?) in
+                guard let validFavoriteTracks = tracksArr else { return }
+                DispatchQueue.main.async {
+                    self.favoritesArray += validFavoriteTracks
+                    dump(self.favoritesArray)
+                    self.tableView.reloadData()
+                }
+            })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +60,6 @@ class FavoritesTableViewController: UITableViewController {
         return favoritesArray.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteSongCellID", for: indexPath) as! FavoritesTableViewCell
         let faveSong = favoritesArray[indexPath.row]
@@ -71,5 +81,24 @@ class FavoritesTableViewController: UITableViewController {
         }
     }
     
+    internal func registerForNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(self.updateUser(sender:)), name: Notification.Name(rawValue: "UserObjectDidUpdate"), object: nil)
+    }
     
+    internal func updateUser(sender: Notification) {
+        if let userInfo = sender.userInfo as? [String : AnyObject] {
+            if let info = userInfo["info"] as? [String : AnyObject]{
+                do {
+                    guard let validUser = try User(dict: info) else {
+                        throw ParseError.user
+                    }
+                    self.user = validUser
+                }
+                catch {
+                    print(error)
+                }
+            }
+        }
+    }
 }

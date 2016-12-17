@@ -32,7 +32,10 @@ class AlbumTracks {
     }
     
     convenience init?(from Dictionary: [String : Any]) {
-        
+        //need to do another convenience init just to make things work
+        //track is one level deeper
+        //https://api.spotify.com/v1/me/tracks
+        //Authorization Bearer BQCpLpruFbe...
         
         guard let trackName = Dictionary["name"] as? String, let id = Dictionary["id"] as? String,
             let trackNumber = Dictionary["track_number"] as? Int,

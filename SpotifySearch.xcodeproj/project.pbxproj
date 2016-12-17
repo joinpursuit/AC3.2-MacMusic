@@ -33,6 +33,8 @@
 		A72022E71DD43E5A008444FE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72022E61DD43E5A008444FE /* Video.swift */; };
 		A75F6F6C1DD247C5001204D4 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75F6F6B1DD247C5001204D4 /* Track.swift */; };
 		A75F6F6E1DD247E0001204D4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75F6F6D1DD247E0001204D4 /* Genre.swift */; };
+		A77F916B1E01DD4300467210 /* SpotifyOAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F916A1E01DD4200467210 /* SpotifyOAuthManager.swift */; };
+		A7AF495D1E023B6900F1117A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AF495C1E023B6900F1117A /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		A72022E61DD43E5A008444FE /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		A75F6F6B1DD247C5001204D4 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Track.swift; path = ../Track.swift; sourceTree = "<group>"; };
 		A75F6F6D1DD247E0001204D4 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Genre.swift; path = ../Genre.swift; sourceTree = "<group>"; };
+		A77F916A1E01DD4200467210 /* SpotifyOAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyOAuthManager.swift; sourceTree = "<group>"; };
+		A7AF495C1E023B6900F1117A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,9 +125,10 @@
 		2D66607B1DC3A0120006ECB6 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				2D6660851DC3AD4D0006ECB6 /* Extensions.swift */,
+				A77F916A1E01DD4200467210 /* SpotifyOAuthManager.swift */,
 				2D6660791DC39DA90006ECB6 /* APIRequestManager.swift */,
 				2D01AC821DC645BE00BD087F /* SettingsManager.swift */,
+				2D6660851DC3AD4D0006ECB6 /* Extensions.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				A75F6F6D1DD247E0001204D4 /* Genre.swift */,
 				A75F6F6B1DD247C5001204D4 /* Track.swift */,
 				A72022E61DD43E5A008444FE /* Video.swift */,
+				A7AF495C1E023B6900F1117A /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -243,6 +249,7 @@
 				2D6660841DC3AB1D0006ECB6 /* AlbumTableViewCell.swift in Sources */,
 				2DEE85FD1DD3B0F3004F5C69 /* FavoritesTableViewCell.swift in Sources */,
 				2DDD5D851DD142E5002F77FB /* AlbumTracks.swift in Sources */,
+				A7AF495D1E023B6900F1117A /* User.swift in Sources */,
 				2DFFF77B1DCEA980006DC2C7 /* SegmentedControlTableViewCell.swift in Sources */,
 				2DDD5D831DD13199002F77FB /* AlbumTracksViewController.swift in Sources */,
 				2DEE85FB1DD3B0A8004F5C69 /* FavoritesTableViewController.swift in Sources */,
@@ -254,6 +261,7 @@
 				2DDD5D871DD243EE002F77FB /* TrackViewController.swift in Sources */,
 				A72022E71DD43E5A008444FE /* Video.swift in Sources */,
 				A75F6F6E1DD247E0001204D4 /* Genre.swift in Sources */,
+				A77F916B1E01DD4300467210 /* SpotifyOAuthManager.swift in Sources */,
 				3E2E68841DD3BB4A003E844D /* Artists.swift in Sources */,
 				2D6660681DC39D3C0006ECB6 /* AppDelegate.swift in Sources */,
 				2D66607D1DC3A0400006ECB6 /* Album.swift in Sources */,

@@ -83,7 +83,6 @@ class TrackViewController: UIViewController {
     
     func playAudio() {
         guard let trackPrev = URL(string: trackSelected.trackPreviewURL) else {return}
-        print(trackPrev)
         playerItem = AVPlayerItem(url: trackPrev)
         player = AVPlayer(playerItem: playerItem!)
         let playerLayer=AVPlayerLayer(player: player!)
@@ -112,13 +111,11 @@ class TrackViewController: UIViewController {
         guard let searchTrackName: String = trackSelected.trackName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
         guard let searchTrackSinger: String = trackSelected.singerName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
         trackURL = trackBaseURL + "&q_track=" + searchTrackName + "&q_artist=" + searchTrackSinger + "&page_size=10"
-        print(trackURL)
         
         APIRequestManager.manager.getData(endPoint: trackURL) { (data: Data?) in
             if let validData = data {
                 guard let validTrack = Track.getTrack(from: validData) else {return}
                 self.trackArray = validTrack
-                dump(self.trackArray)
                 DispatchQueue.main.async {
                     guard self.trackArray.count > 0 else {return}
                     self.trackID = self.trackArray[0].track_id
@@ -197,7 +194,7 @@ class TrackViewController: UIViewController {
         guard let searchiTunesName: String = trackSelected.trackName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
         guard let searchiTunesSinger: String = trackSelected.singerName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
         iTunesURL = iTunesBaseURL + "&term=" + searchiTunesName + "%20" + searchiTunesSinger
-        print("To get iTunes Object" + iTunesURL + " Ends Here")
+        //print("To get iTunes Object" + iTunesURL + " Ends Here")
         
         //http://stackoverflow.com/questions/433907/how-to-link-to-apps-on-the-app-store
         APIRequestManager.manager.getData(endPoint: iTunesURL) { (data: Data?) in
@@ -207,15 +204,6 @@ class TrackViewController: UIViewController {
             DispatchQueue.main.async {
                 if self.iTunesArray.count > 0 {
                     let iTunesTrackURL = self.iTunesArray[0].trackViewUrl //works with openingMusic
-                    print("To get iTunes Link URL" + iTunesTrackURL + " Ends Here")
-                    
-                    //need collectionName and collectionID
-                    //                    let demoiTunesCollectionName = self.iTunesArray[0].collectionName
-                    //                    let demoiTunesCollectionId = self.iTunesArray[0].collectionId
-                    //                    let demoiTunesCollectionNameWithDash = demoiTunesCollectionName.replacingOccurrences(of: " ", with: "-", options: .literal, range: nil)
-                    //                    self.iTunesDemoURL = "https://itunes.apple.com/us/album/" + demoiTunesCollectionNameWithDash + "/id" + String(demoiTunesCollectionId) + "#"
-                    //                    print("Demo: \(self.iTunesDemoURL)")
-                    
                     guard let url = URL(string: iTunesTrackURL) else {return}
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
@@ -227,10 +215,9 @@ class TrackViewController: UIViewController {
         let searchString = trackSelected.singerName + " " + trackSelected.trackName
         let searchStringWithPlus = searchString.replacingOccurrences(of: " ", with: "+")
         videoURL = videoBaseURL + "&q=" + searchStringWithPlus
-        print(videoURL)
+        //print(videoURL)
         APIRequestManager.manager.getData(endPoint: videoURL) { (data: Data?) in
             if let validData = data{
-                dump(validData)
                 guard let validVideos = Video.getVideo(from: validData) else {return}
                 self.videosArray = validVideos
                 DispatchQueue.main.async {

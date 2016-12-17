@@ -35,7 +35,6 @@ class SettingsTableViewController: UITableViewController {
                 sliderCell.updateSlider(min: SettingsManager.manager.minResults,
                                         max: SettingsManager.manager.maxResults,
                                         current: SettingsManager.manager.limit)
-
             }
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "albumCell", for: indexPath)
@@ -45,7 +44,6 @@ class SettingsTableViewController: UITableViewController {
             }
         default:
             cell = tableView.dequeueReusableCell(withIdentifier: "chooseMarket", for: indexPath)
-
         }
         return cell
     }
