@@ -20,7 +20,16 @@ class TrackViewController: UIViewController {
     @IBOutlet weak var youTubeButton: UIButton!
     @IBOutlet weak var socialButton: UIButton!
     
-    var favButtonPressedCount = 0
+    var favoriteStatus : FavoriteManager {
+        get{
+            return FavoriteManager(track: self.trackSelected, isAlreadyAdded: false)
+        }
+        set (newValue) {
+            self.favoriteStatus = newValue
+        }
+    }
+    
+    //var favButtonPressedCount = 0
     
     var trackSelected: AlbumTracks!
     var albumImg: String!
@@ -63,21 +72,21 @@ class TrackViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async {
-            
-            let userDefaults = UserDefaults.standard
-            if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
-                for song in favoriteSongs {
-                    if song["track_id"] == self.trackSelected.trackID {
-                        self.favButtonPressedCount = 1
-                    }
-                }
-            }
-            
-            if self.favButtonPressedCount == 0 {
-                self.favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
-            } else {
-                self.favoritesButton.setBackgroundImage(UIImage(named: "minus-5-512"), for: UIControlState.normal)
-            }
+            self.favoriteStatus.updateButtonStatus(self.favoritesButton)
+//            let userDefaults = UserDefaults.standard
+//            if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
+//                for song in favoriteSongs {
+//                    if song["track_id"] == self.trackSelected.trackID {
+//                        self.favButtonPressedCount = 1
+//                    }
+//                }
+//            }
+//            
+//            if self.favButtonPressedCount == 0 {
+//                self.favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
+//            } else {
+//                self.favoritesButton.setBackgroundImage(UIImage(named: "minus-5-512"), for: UIControlState.normal)
+//            }
         }
     }
     
@@ -135,59 +144,62 @@ class TrackViewController: UIViewController {
     }
     
     func addToFavorites() {
-        let userDefaults = UserDefaults.standard
-        
-        var favoriteSong = [String: String]()
-        favoriteSong.updateValue(trackSelected.trackID, forKey: "track_id")
-        favoriteSong.updateValue(trackSelected.trackName, forKey: "track_name")
-        favoriteSong.updateValue(trackSelected.singerName, forKey: "artist_name")
-        favoriteSong.updateValue(String(trackID), forKey: "track_lyrics_id")
-        favoriteSong.updateValue(String(trackSelected.trackNumber), forKey: "track_number")
-        favoriteSong.updateValue(trackSelected.trackPreviewURL, forKey: "track_preview_URL")
-        favoriteSong.updateValue(albumImg, forKey: "album_Img")
-        
-        if var favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
-            favoriteSongs.append(favoriteSong)
-            userDefaults.set(favoriteSongs, forKey: "favoriteSongs")
-        } else {
-            userDefaults.set([favoriteSong], forKey: "favoriteSongs")
-        }
-        favButtonPressedCount = 1
+        self.favoriteStatus.addToFavorites()
+//        let userDefaults = UserDefaults.standard
+//        
+//        var favoriteSong = [String: String]()
+//        favoriteSong.updateValue(trackSelected.trackID, forKey: "track_id")
+//        favoriteSong.updateValue(trackSelected.trackName, forKey: "track_name")
+//        favoriteSong.updateValue(trackSelected.singerName, forKey: "artist_name")
+//        favoriteSong.updateValue(String(trackID), forKey: "track_lyrics_id")
+//        favoriteSong.updateValue(String(trackSelected.trackNumber), forKey: "track_number")
+//        favoriteSong.updateValue(trackSelected.trackPreviewURL, forKey: "track_preview_URL")
+//        favoriteSong.updateValue(albumImg, forKey: "album_Img")
+//        
+//        if var favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
+//            favoriteSongs.append(favoriteSong)
+//            userDefaults.set(favoriteSongs, forKey: "favoriteSongs")
+//        } else {
+//            userDefaults.set([favoriteSong], forKey: "favoriteSongs")
+//        }
+//        favButtonPressedCount = 1
     }
     
     func removeFromFavorites() {
-        let userDefaults = UserDefaults.standard
-        
-        if var favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
-            for (index,song) in favoriteSongs.enumerated() {
-                if song["track_id"] == trackSelected.trackID {
-                    favoriteSongs.remove(at: index)
-                    userDefaults.set(favoriteSongs, forKey: "favoriteSongs")
-                    favButtonPressedCount = 0
-                }
-            }
-        }
+        self.favoriteStatus.removeFromFavorites()
+//        let userDefaults = UserDefaults.standard
+//        
+//        if var favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
+//            for (index,song) in favoriteSongs.enumerated() {
+//                if song["track_id"] == trackSelected.trackID {
+//                    favoriteSongs.remove(at: index)
+//                    userDefaults.set(favoriteSongs, forKey: "favoriteSongs")
+//                    favButtonPressedCount = 0
+//                }
+//            }
+//        }
     }
     
     @IBAction func favoriteSongPressed(_ sender: UIButton) {
-        let userDefaults = UserDefaults.standard
-        
-        if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
-            for song in favoriteSongs {
-                if song["track_id"] == trackSelected.trackID {
-                    favButtonPressedCount = 1
-                }
-            }
-        }
-        
-        if favButtonPressedCount == 0 {
-            addToFavorites()
-            favoritesButton.setBackgroundImage(UIImage(named: "minus-5-512"), for: UIControlState.normal)
-        } else {
-            removeFromFavorites()
-            favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
-        }
-        
+        self.favoriteStatus.favoriteSongPressed(sender)
+//        let userDefaults = UserDefaults.standard
+//        
+//        if let favoriteSongs = userDefaults.object(forKey: "favoriteSongs") as? [[String: String]]  {
+//            for song in favoriteSongs {
+//                if song["track_id"] == trackSelected.trackID {
+//                    favButtonPressedCount = 1
+//                }
+//            }
+//        }
+//        
+//        if favButtonPressedCount == 0 {
+//            addToFavorites()
+//            favoritesButton.setBackgroundImage(UIImage(named: "minus-5-512"), for: UIControlState.normal)
+//        } else {
+//            removeFromFavorites()
+//            favoritesButton.setBackgroundImage(UIImage(named: "plus-circle-outline"), for: UIControlState.normal)
+//        }
+//        
     }
     
     @IBAction func iTunesButtonPressed(_ sender: UIButton) {
@@ -235,6 +247,7 @@ class TrackViewController: UIViewController {
     
     
     @IBAction func socialButtonPressed(_ sender: UIButton) {
+        
     }
     
     
