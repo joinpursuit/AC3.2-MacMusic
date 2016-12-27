@@ -163,7 +163,10 @@ internal class SpotifyOAuthManager {
             }
             guard let validData = data else { return }
             dump(validData)
-            guard let validAlbumTracks = AlbumTracks.tracks(from: validData) else { return }
+            guard let validAlbumTracks = AlbumTracks.tracks(fromFavorite: validData) else { return }
+            print("The following are the tracks...!?")
+            dump(validAlbumTracks)
+            print("The above are the tracks...!?")
             validAlbumTracksToReturn = validAlbumTracks
             complete(validAlbumTracksToReturn)
         }.resume()

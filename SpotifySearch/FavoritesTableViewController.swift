@@ -16,6 +16,7 @@ class FavoritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.registerForNotifications()
+        self.navigationController?.title = user?.display_name
         DispatchQueue.main.async {
             SpotifyOAuthManager.shared.getTracks(complete: { (tracksArr: [AlbumTracks]?) in
                 guard let validFavoriteTracks = tracksArr else { return }
@@ -31,6 +32,7 @@ class FavoritesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let favoriteSongsDict = UserDefaults.standard.value(forKey: "favoriteSongs") as? [[String : String]] {
             favoritesArray.removeAll()
+            dump (favoriteSongsDict)
             for dict in favoriteSongsDict {
                 if let songID = dict["track_id"],
                     let songName = dict["track_name"],
