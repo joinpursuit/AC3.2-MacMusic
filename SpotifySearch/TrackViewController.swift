@@ -48,14 +48,14 @@ class TrackViewController: UIViewController {
     var lyricsBaseURL = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=c4c49544dec7305a9c6a01af96bfdcb3&track_id="
     var lyricsURL = ""
     
-    var iTunesBaseURL = "https://itunes.apple.com/search?country=US&media=music&entity=musicTrack"
-    var iTunesURL = ""
+//    var iTunesBaseURL = "https://itunes.apple.com/search?country=US&media=music&entity=musicTrack"
+//    var iTunesURL = ""
+//    
+//    var iTunesDemoBaseURL = "https://itunes.apple.com/us/album/25/id1051394208#"
+//    var iTunesDemoURL = ""
     
-    var iTunesDemoBaseURL = "https://itunes.apple.com/us/album/25/id1051394208#"
-    var iTunesDemoURL = ""
-    
-    var videoBaseURL = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyAtF36hcFVY9F8ZetEbSLvXVzeu1RtJzD8&order=viewCount&part=snippet&type=video"
-    var videoURL = ""
+//    var videoBaseURL = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyAtF36hcFVY9F8ZetEbSLvXVzeu1RtJzD8&order=viewCount&part=snippet&type=video"
+//    var videoURL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,44 +140,81 @@ class TrackViewController: UIViewController {
     }
     
     @IBAction func iTunesButtonPressed(_ sender: UIButton) {
-        guard let searchiTunesName: String = trackSelected.trackName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-        guard let searchiTunesSinger: String = trackSelected.singerName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-        iTunesURL = iTunesBaseURL + "&term=" + searchiTunesName + "%20" + searchiTunesSinger
-        //print("To get iTunes Object" + iTunesURL + " Ends Here")
-        
-        //http://stackoverflow.com/questions/433907/how-to-link-to-apps-on-the-app-store
-        APIRequestManager.manager.getData(endPoint: iTunesURL) { (data: Data?) in
-            guard let validData = data else {return}
-            guard let validiTunes = iTunes.getiTunes(from: validData) else {return}
-            self.iTunesArray = validiTunes
+        APIRequestManager.manager.getiTunesMusicData(track: self.trackSelected) { (iTunesArray: [iTunes]?) in
+            guard let validiTunesArray = iTunesArray else {
+                self.iTunesButton.isHidden = true
+                return }
+            self.iTunesArray = validiTunesArray
             DispatchQueue.main.async {
                 if self.iTunesArray.count > 0 {
+                    dump(self.iTunesArray)
+                    self.iTunesButton.isHidden = false
                     let iTunesTrackURL = self.iTunesArray[0].trackViewUrl //works with openingMusic
                     guard let url = URL(string: iTunesTrackURL) else {return}
+                    print(url)
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    self.iTunesButton.isHidden = true
                 }
             }
         }
+//        guard let searchiTunesName: String = trackSelected.trackName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+//        guard let searchiTunesSinger: String = trackSelected.singerName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+//        iTunesURL = iTunesBaseURL + "&term=" + searchiTunesName + "%20" + searchiTunesSinger
+//        //print("To get iTunes Object" + iTunesURL + " Ends Here")
+//        
+//        //http://stackoverflow.com/questions/433907/how-to-link-to-apps-on-the-app-store
+//        APIRequestManager.manager.getData(endPoint: iTunesURL) { (data: Data?) in
+//            guard let validData = data else {return}
+//            guard let validiTunes = iTunes.getiTunes(from: validData) else {return}
+//            self.iTunesArray = validiTunes
+//            DispatchQueue.main.async {
+//                if self.iTunesArray.count > 0 {
+//                    let iTunesTrackURL = self.iTunesArray[0].trackViewUrl //works with openingMusic
+//                    guard let url = URL(string: iTunesTrackURL) else {return}
+//                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//                }
+//            }
+//        }
     }
     
     @IBAction func youTubeButtonPressed(_ sender: UIButton) {
-        let searchString = trackSelected.singerName + " " + trackSelected.trackName
-        let searchStringWithPlus = searchString.replacingOccurrences(of: " ", with: "+")
-        videoURL = videoBaseURL + "&q=" + searchStringWithPlus
-        //print(videoURL)
-        APIRequestManager.manager.getData(endPoint: videoURL) { (data: Data?) in
-            if let validData = data{
-                guard let validVideos = Video.getVideo(from: validData) else {return}
-                self.videosArray = validVideos
-                DispatchQueue.main.async {
-                    if self.videosArray.count > 0 {
-                        let youtubeURL = "https://www.youtube.com/watch?v=" + self.videosArray[0].videoId
-                        guard let url = URL(string: youtubeURL) else {return}
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
+        APIRequestManager.manager.getYouTubeVevoData(track: self.trackSelected) { (videoArray: [Video]?) in
+            guard let validVideoArray = videoArray else {
+                self.youTubeButton.isHidden = true
+                return }
+            self.videosArray = validVideoArray
+            DispatchQueue.main.async {
+                if self.videosArray.count > 0 {
+                    dump(self.videosArray)
+                    self.youTubeButton.isHidden = false
+                    let youtubeURL = "https://www.youtube.com/watch?v=" + self.videosArray[0].videoId
+                    guard let url = URL(string: youtubeURL) else {return}
+                    print(url)
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    self.youTubeButton.isHidden = true
                 }
             }
         }
+
+//        let searchString = trackSelected.singerName + " " + trackSelected.trackName
+//        let searchStringWithPlus = searchString.replacingOccurrences(of: " ", with: "+")
+//        videoURL = videoBaseURL + "&q=" + searchStringWithPlus
+//        //print(videoURL)
+//        APIRequestManager.manager.getData(endPoint: videoURL) { (data: Data?) in
+//            if let validData = data{
+//                guard let validVideos = Video.getVideo(from: validData) else {return}
+//                self.videosArray = validVideos
+//                DispatchQueue.main.async {
+//                    if self.videosArray.count > 0 {
+//                        let youtubeURL = "https://www.youtube.com/watch?v=" + self.videosArray[0].videoId
+//                        guard let url = URL(string: youtubeURL) else {return}
+//                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//                    }
+//                }
+//            }
+//        }
         //https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=nicki+minaj+anaconda&type=video&key=AIzaSyAtF36hcFVY9F8ZetEbSLvXVzeu1RtJzD8
         //https://www.youtube.com/watch?v=LDZX4ooRsWs
     }
