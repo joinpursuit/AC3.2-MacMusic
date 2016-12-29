@@ -67,11 +67,8 @@ class APIRequestManager {
     
     
     func getiTunesMusicData(track: AlbumTracks, callback: @escaping ([iTunes]?) -> Void) {
-//        guard let searchiTunesName: String = track.trackName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-//        guard let searchiTunesSinger: String = track.singerName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
         guard let validSearchString = (track.trackName + " " + track.singerName).addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         let iTunesBaseURL = "https://itunes.apple.com/search?country=US&media=music&entity=musicTrack"
-//        let iTunesURL = iTunesBaseURL + "&term=" + searchiTunesName + "%20" + searchiTunesSinger
         let iTunesURL = iTunesBaseURL + "&term=" + validSearchString
         print(iTunesURL)
         //http://stackoverflow.com/questions/433907/how-to-link-to-apps-on-the-app-store
@@ -88,7 +85,6 @@ class APIRequestManager {
         var videoURL = ""
         let searchString = track.singerName + " " + track.trackName
         guard let validSearchString = searchString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
-        //let searchStringWithPlus = searchString.replacingOccurrences(of: " ", with: "+")
         videoURL = videoBaseURL + "&q=" + validSearchString
         print(videoURL)
         APIRequestManager.manager.getData(endPoint: videoURL) { (data: Data?) in

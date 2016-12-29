@@ -19,7 +19,6 @@ class SliderTableViewCell: UITableViewCell {
     @IBOutlet weak var numberOfResultsLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
     
-    
     @IBAction func didChangeValue(_ sender: UISlider) {
         self.numberOfResultsLabel.text = "\(Int(sender.value))"
         self.delegate?.sliderDidChange(Int(sender.value))

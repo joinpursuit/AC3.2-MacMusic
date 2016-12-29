@@ -158,24 +158,6 @@ class TrackViewController: UIViewController {
                 }
             }
         }
-//        guard let searchiTunesName: String = trackSelected.trackName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-//        guard let searchiTunesSinger: String = trackSelected.singerName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-//        iTunesURL = iTunesBaseURL + "&term=" + searchiTunesName + "%20" + searchiTunesSinger
-//        //print("To get iTunes Object" + iTunesURL + " Ends Here")
-//        
-//        //http://stackoverflow.com/questions/433907/how-to-link-to-apps-on-the-app-store
-//        APIRequestManager.manager.getData(endPoint: iTunesURL) { (data: Data?) in
-//            guard let validData = data else {return}
-//            guard let validiTunes = iTunes.getiTunes(from: validData) else {return}
-//            self.iTunesArray = validiTunes
-//            DispatchQueue.main.async {
-//                if self.iTunesArray.count > 0 {
-//                    let iTunesTrackURL = self.iTunesArray[0].trackViewUrl //works with openingMusic
-//                    guard let url = URL(string: iTunesTrackURL) else {return}
-//                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//                }
-//            }
-//        }
     }
     
     @IBAction func youTubeButtonPressed(_ sender: UIButton) {
@@ -197,32 +179,8 @@ class TrackViewController: UIViewController {
                 }
             }
         }
-
-//        let searchString = trackSelected.singerName + " " + trackSelected.trackName
-//        let searchStringWithPlus = searchString.replacingOccurrences(of: " ", with: "+")
-//        videoURL = videoBaseURL + "&q=" + searchStringWithPlus
-//        //print(videoURL)
-//        APIRequestManager.manager.getData(endPoint: videoURL) { (data: Data?) in
-//            if let validData = data{
-//                guard let validVideos = Video.getVideo(from: validData) else {return}
-//                self.videosArray = validVideos
-//                DispatchQueue.main.async {
-//                    if self.videosArray.count > 0 {
-//                        let youtubeURL = "https://www.youtube.com/watch?v=" + self.videosArray[0].videoId
-//                        guard let url = URL(string: youtubeURL) else {return}
-//                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//                    }
-//                }
-//            }
-//        }
-        //https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=nicki+minaj+anaconda&type=video&key=AIzaSyAtF36hcFVY9F8ZetEbSLvXVzeu1RtJzD8
-        //https://www.youtube.com/watch?v=LDZX4ooRsWs
     }
-    
     
     @IBAction func socialButtonPressed(_ sender: UIButton) {
-        
     }
-    
-    
 }

@@ -63,9 +63,7 @@ class AlbumTracksViewController: UIViewController, UITableViewDelegate, UITableV
                 let indexPath = trackTableView.indexPathForSelectedRow {
                 dest.trackSelected = tracks[indexPath.row]
                 dest.albumImg = albumSelected.largeImageURL
-
             }
         }
     }
-    
 }

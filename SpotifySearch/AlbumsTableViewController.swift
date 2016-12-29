@@ -11,16 +11,10 @@ import UIKit
 
 
 class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
-        
-
     internal var album: [Album] = []
-    
     var artistName = ""
-    
     var trackArray: [Track] = []
-    
     var iTunesArray: [iTunes] = []
-    
     var videosArray: [Video] = []
     
     var trackURL = "http://api.musixmatch.com/ws/1.1/track.search?apikey=a94099f771b956511ae7b523023eea65&q_track=Complicated&q_artist=Avril&page_size=10"
@@ -94,7 +88,6 @@ class AlbumsTableViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCellID", for: indexPath) as! AlbumTableViewCell
-        
         let album = self.album[indexPath.row]
         cell.albumNameLabel.text = album.name
         cell.albumImageView.downloadImage(urlString: album.smallImageURL!)
