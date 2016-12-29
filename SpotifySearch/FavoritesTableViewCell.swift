@@ -27,5 +27,4 @@ class FavoritesTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         self.favoritesTrackImageView.image = nil
     }
-
 }

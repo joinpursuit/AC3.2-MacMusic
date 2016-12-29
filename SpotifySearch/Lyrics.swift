@@ -52,10 +52,8 @@ class Lyrics {
             let body = message["body"] as? [String: Any],
             let lyrics = body["lyrics"] as? [String: Any] else {throw LyricsModelParsedError.message}
             
-            
             if let theLyrics = Lyrics(withDict: lyrics) {
                 infoToReturn?.append(theLyrics)
-                
             }
         }
         catch {
@@ -64,6 +62,5 @@ class Lyrics {
         
         return infoToReturn
     }
-    
 }
 

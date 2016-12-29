@@ -25,7 +25,6 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
         var cell = UITableViewCell()
         switch indexPath.section {
         case 0:

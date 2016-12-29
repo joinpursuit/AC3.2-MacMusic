@@ -13,7 +13,6 @@ protocol SegmentedControlDelegate {
     func didSelectMusicType(ofType: albumType)
 }
 
-
 class SegmentedControlTableViewCell: UITableViewCell {
     internal var delegate: SegmentedControlDelegate?
 
@@ -44,5 +43,4 @@ class SegmentedControlTableViewCell: UITableViewCell {
     func setMusicTypes(to: albumType) {
         MusicType.selectedSegmentIndex = typeToValues(ofType: to)
     }
-
 }
